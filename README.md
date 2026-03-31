@@ -1,9 +1,31 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Food diary
 
-**En ole vielä _varma_ mitä aion tehdä**, mutta diojen esimerkeistä jokin *kuntoiluun* tai *diettaamiseen* liittyvä ohjelma voisi olla mielenkiintoinen.
-
-[Laskarit](https://github.com/Kooville/ot-harjoitustyo/tree/main/laskarit)
-
+## Dokumentaatio
 [Vaatimusmäärittely](https://github.com/Kooville/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/Kooville/ot-harjoitustyo/blob/main/dokumentaatio/tyoaikakirjanpito.md)
+
+[Changelog](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/changelog.md)
+
+## Asennus
+
+1. Lataa repositorio omalle tietokoneellesi
+
+2. Asenna riippuvuudet siirtymällä repositorioon ja suorittamalla komennon:
+
+```bash
+poetry install
+```
+
+3. Alusta tietokanta komennolla:
+
+```bash
+poetry run invoke build
+```
+
+4. Käynnistä sovellus komennolla:
+
+```bash
+poetry run invoke start
+```
+
