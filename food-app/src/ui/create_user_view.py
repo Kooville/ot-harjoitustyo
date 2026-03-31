@@ -1,5 +1,6 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, StringVar
 from services.diary_service import diary_service
+from ui.style import init_styles
 
 class CreateUserView:
     """ Käyttöliittymä uuden käyttäjän luonnille """
@@ -7,6 +8,7 @@ class CreateUserView:
     def __init__(self, root):
         self._root = root
         self._frame = None
+        self._style = init_styles()
         self._username_entry = None
         self._password_entry = None
         self._password_confirmation_entry = None
@@ -15,52 +17,141 @@ class CreateUserView:
         self._initialize()
 
     def pack(self):
-        self._frame.pack(fill=constants.X)
-        
+        self._frame.pack(fill=constants.BOTH, expand=True)
+
     def destroy(self):
         self._frame.destroy()
 
     def _handle_create_user_click(self):
+        self._error_variable.set("")
         username = self._username_entry.get()
         password = self._password_entry.get()
         password_confirmation = self._password_confirmation_entry.get()
 
         try:
-            user = diary_service.create_user(username, password, password_confirmation)
+            user = diary_service.create_user(username,
+                                             password,
+                                             password_confirmation
+                                             )
+
         except ValueError as error:
             self._error_variable.set(str(error))
 
     def _initialize_username_field(self):
-        username_label = ttk.Label(master=self._frame, text="Käyttäjätunnus")
-        self._username_entry = ttk.Entry(master=self._frame)
+        username_label = ttk.Label(master=self._container,
+                                   text="Käyttäjätunnus",
+                                   style="Card.TLabel"
+                                   )
 
-        username_label.grid(row=0, column=0, padx=5, pady=5)
-        self._username_entry.grid(row=0, column=1, padx=5, pady=5)
+        self._username_entry = ttk.Entry(master=self._container)
+
+        username_label.grid(row=0,
+                            column=0,
+                            sticky=constants.W,
+                            padx=20,
+                            pady=10
+                            )
+
+        self._username_entry.grid(row=0,
+                                  column=1,
+                                  sticky=constants.EW,
+                                  padx=20,
+                                  pady=10
+                                  )
 
     def _initialize_password_field(self):
-        password_label = ttk.Label(master=self._frame, text="Salasana")
-        self._password_entry = ttk.Entry(master=self._frame, show="*")
+        password_label = ttk.Label(master=self._container,
+                                   text="Salasana",
+                                   style="Card.TLabel"
+                                   )
 
-        password_label.grid(row=1, column=0, padx=5, pady=5)
-        self._password_entry.grid(row=1, column=1, padx=5, pady=5)
-    
+        self._password_entry = ttk.Entry(master=self._container,
+                                         show="*"
+                                         )
+
+        password_label.grid(row=1,
+                            column=0,
+                            sticky=constants.W,
+                            padx=20,
+                            pady=10
+                            )
+
+        self._password_entry.grid(row=1,
+                                  column=1,
+                                  sticky=constants.EW,
+                                  padx=20,
+                                  pady=10
+                                  )
+
     def _initialize_password_confirmation_field(self):
-        password_confirmation_label = ttk.Label(master=self._frame, text="Salasana uudestaan")
-        self._password_confirmation_entry = ttk.Entry(master=self._frame, show="*") 
+        password_confirmation_label = ttk.Label(master=self._container,
+                                                text="Salasana uudestaan",
+                                                style="Card.TLabel")
+        self._password_confirmation_entry = ttk.Entry(master=self._container,
+                                                      show="*"
+                                                      )
 
-        password_confirmation_label.grid(row=2, column=0, padx=5, pady=5)
-        self._password_confirmation_entry.grid(row=2, column=1, padx=5, pady=5)
+        password_confirmation_label.grid(row=2,
+                                         column=0,
+                                         sticky=constants.W,
+                                         padx=20,
+                                         pady=10
+                                         )
+        self._password_confirmation_entry.grid(row=2,
+                                               column=1,
+                                               sticky=constants.EW,
+                                               padx=20,
+                                               pady=10
+                                               )
 
     def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = ttk.Frame(master=self._root,
+                                style="TFrame"
+                                )
+        
+        self._frame.grid_rowconfigure(0, weight=1)
+        self._frame.grid_rowconfigure(2, weight=1)
+        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_columnconfigure(2, weight=1)
+
+        container = ttk.Frame(self._frame,
+                              padding=30,
+                              style="Card.TFrame"
+                              )
+        container.grid(row=1, column=1)
+        self._container = container
 
         self._initialize_username_field()
         self._initialize_password_field()
         self._initialize_password_confirmation_field()
 
-        create_user_button = ttk.Button(
-            master=self._frame,
-            text="Luo käyttäjä",
-            command=self._handle_create_user_click
+        self._error_variable = StringVar()
+        error_label = ttk.Label(
+            master=self._container,
+            textvariable=self._error_variable,
+            style="CardError.TLabel"
         )
-        create_user_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
+        error_label.grid(row=3,
+                         column=0,
+                         columnspan=2,
+                         sticky=constants.W,
+                         padx=20,
+                         pady=10
+                         )
+
+        create_user_button = ttk.Button(
+            master=self._container,
+            text="Luo käyttäjä",
+            command=self._handle_create_user_click,
+            style="Card.TButton"
+        )
+
+        create_user_button.grid(row=4,
+                                column=0,
+                                columnspan=2,
+                                sticky=constants.EW,
+                                padx=20,
+                                pady=20,
+                                )
+        self._container.grid_columnconfigure(0, weight=1)
+        self._container.grid_columnconfigure(1, weight=1)
