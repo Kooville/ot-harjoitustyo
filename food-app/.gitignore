@@ -1,0 +1,4 @@
+data/database.sqlite
+.pytest_cache
+.coverage
+.venv
