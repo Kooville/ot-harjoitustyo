@@ -5,7 +5,7 @@ from ui.style import init_styles
 class CreateUserView:
     """ Käyttöliittymä uuden käyttäjän luonnille """
 
-    def __init__(self, root):
+    def __init__(self, root, show_main_menu):
         self._root = root
         self._frame = None
         self._style = init_styles()
@@ -13,6 +13,7 @@ class CreateUserView:
         self._password_entry = None
         self._password_confirmation_entry = None
         self._error_variable = None
+        self._show_main_menu = show_main_menu
 
         self._initialize()
 
@@ -33,6 +34,7 @@ class CreateUserView:
                                              password,
                                              password_confirmation
                                              )
+            self._show_main_menu(user)
 
         except ValueError as error:
             self._error_variable.set(str(error))

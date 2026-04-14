@@ -17,6 +17,7 @@ class UserRepository:
         cursor.execute("insert into users (username, password) values (?, ?)",
                        (user.username, user.password))
         self.connection.commit()
+        return user
 
     def get_user(self, username, password):
         """ Hakee tietokannasta käyttäjän, joka vastaa annettuja tietoja """
