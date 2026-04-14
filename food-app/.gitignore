@@ -1,4 +1,4 @@
-data/database.sqlite
+database.sqlite
 .pytest_cache
 .coverage
 .venv
