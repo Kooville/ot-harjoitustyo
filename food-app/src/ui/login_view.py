@@ -6,7 +6,7 @@ from ui.style import init_styles
 class LoginView:
     """ Käyttöliittymä sisäänkirjautumiseen """
 
-    def __init__(self, root, show_main_menu):
+    def __init__(self, root, show_main_menu, show_start_view):
         self._root = root
         self._frame = None
         self._style = init_styles()
@@ -14,6 +14,7 @@ class LoginView:
         self._password_entry = None
         self._error_variable = None
         self._show_main_menu = show_main_menu
+        self._show_start_view = show_start_view
 
         self._initialize()
 
@@ -84,16 +85,30 @@ class LoginView:
         self._frame = ttk.Frame(master=self._root,
                                 style="TFrame"
                                 )
-        self._frame.grid_rowconfigure(0, weight=1)
-        self._frame.grid_rowconfigure(2, weight=1)
+        self._frame.grid_rowconfigure(0, weight=0)
+        self._frame.grid_rowconfigure(1, weight=1)
         self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)
+
+        back_button = ttk.Button(
+        master=self._frame,
+        text="←",
+        command=self._show_start_view,
+        style="TButton"
+        )
+
+        back_button.grid(
+        row=0,
+        column=0,
+        sticky=constants.W,
+        padx=10,
+        pady=10
+        )
 
         container = ttk.Frame(self._frame,
                               padding=30,
                               style="Card.TFrame"
                               )
-        container.grid(row=1, column=1)
+        container.grid(row=1, column=0, sticky="")
         self._container = container
 
         self._initialize_username_field()

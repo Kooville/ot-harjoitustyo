@@ -31,13 +31,13 @@ class UI:
     def _show_create_user_view(self):
         self._hide_current_view()
 
-        self._current_view = CreateUserView(self._root, self._show_main_menu)
+        self._current_view = CreateUserView(self._root, self._show_main_menu, self._show_start_view)
         self._current_view.pack()
 
     def _show_login_view(self):
         self._hide_current_view()
 
-        self._current_view = LoginView(self._root, self._show_main_menu)
+        self._current_view = LoginView(self._root, self._show_main_menu, self._show_start_view)
         self._current_view.pack()
 
     def _show_main_menu(self):

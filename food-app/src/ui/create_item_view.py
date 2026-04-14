@@ -70,7 +70,7 @@ class CreateItemView:
 
     def _initialize_calories_field(self):
         calories_label = ttk.Label(master=self._container,
-                                   text="Kalorit",
+                                   text="Kalorit / 100g",
                                    style="Card.TLabel"
                                    )
 
@@ -92,7 +92,7 @@ class CreateItemView:
 
     def _initialize_carbs_field(self):
         carbs_label = ttk.Label(master=self._container,
-                                text="Hiilihydraatit",
+                                text="Hiilihydraatit / 100g",
                                 style="Card.TLabel"
                                 )
 
@@ -114,7 +114,7 @@ class CreateItemView:
 
     def _initialize_protein_field(self):
         protein_label = ttk.Label(master=self._container,
-                                  text="Proteiinit",
+                                  text="Proteiinit / 100g",
                                   style="Card.TLabel"
                                   )
 
@@ -136,7 +136,7 @@ class CreateItemView:
 
     def _initialize_fat_field(self):
         fat_label = ttk.Label(master=self._container,
-                              text="Rasvaa",
+                              text="Rasvaa / 100g",
                               style="Card.TLabel"
                               )
 
@@ -161,16 +161,30 @@ class CreateItemView:
                                 style="TFrame"
                                 )
 
-        self._frame.grid_rowconfigure(0, weight=1)
-        self._frame.grid_rowconfigure(3, weight=1)
+        self._frame.grid_rowconfigure(0, weight=0)
+        self._frame.grid_rowconfigure(1, weight=1)
         self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(6, weight=1)
+
+        back_button = ttk.Button(
+        master=self._frame,
+        text="←",
+        command=self._show_main_menu,
+        style="TButton"
+        )
+
+        back_button.grid(
+        row=0,
+        column=0,
+        sticky=constants.W,
+        padx=10,
+        pady=10
+        )
 
         container = ttk.Frame(self._frame,
                               padding=30,
                               style="Card.TFrame"
                               )
-        container.grid(row=1, column=1)
+        container.grid(row=1, column=0, sticky="")
         self._container = container
 
         self._initialize_name_field()
@@ -180,18 +194,6 @@ class CreateItemView:
         self._initialize_fat_field()
 
         self._error_variable = StringVar()
-        error_label = ttk.Label(
-            master=self._container,
-            textvariable=self._error_variable,
-            style="CardError.TLabel"
-        )
-        error_label.grid(row=3,
-                         column=0,
-                         columnspan=2,
-                         sticky=constants.W,
-                         padx=20,
-                         pady=10
-                         )
 
         create_item_button = ttk.Button(
             master=self._container,
@@ -207,5 +209,19 @@ class CreateItemView:
                                 padx=20,
                                 pady=20,
                                 )
+
+        error_label = ttk.Label(
+            master=self._container,
+            textvariable=self._error_variable,
+            style="CardError.TLabel"
+        )
+        error_label.grid(row=6,
+                         column=0,
+                         columnspan=2,
+                         sticky=constants.W,
+                         padx=20,
+                         pady=10
+                         )
+
         self._container.grid_columnconfigure(0, weight=1)
         self._container.grid_columnconfigure(1, weight=1)
