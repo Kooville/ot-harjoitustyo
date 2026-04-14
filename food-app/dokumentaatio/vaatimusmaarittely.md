@@ -27,7 +27,7 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
   - [x] Nykyiseen päivään
 
-    - [ ] Sovellus näyttää kyseiselle päivälle tallennetut ateriat
+    - [ ] Sovellus näyttää kyseiselle päivälle kirjatut ateriat
 
     - [ ] Mahdollisuus lisätä uusi ateria
       - [ ] Kokonaan uusi ateria tai valita tallennetuista aterioista
@@ -45,7 +45,13 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
     - [ ] Mahdollisuus lisätä ja poistaa aterioita
 
-    - [ ] Käyttäjä voi tallentaa sovellukseen aterioita, ruoka-aine kohtaisesti valitsemillaan määrillä ja sovellus hakee niiden tiedot ja koostaa siitä yhden aterian jonka käyttäjä voi nimetä ja sen voi lisätä sen jälkeen suoraan listasta
+    - [ ] Käyttäjä voi tallentaa sovellukseen aterioita, koostamalla tallentamistaan ruoka-aineista tai myöhemmin tuotteiden nimillä ja määrillä
+  
+  - [ ] Käyttäjä voi lisätä ruoka-aineita
+    
+    - [ ] Aluksi itse kirjaamalla ravintoarvot
+
+    - [ ] Myöhemmin jos mahdollista niin tuotteen nimellä haetaan julkisesta tietokannasta tiedot
 
 - [x] Käyttäjä voi kirjautua ulos sovelluksesta
 
