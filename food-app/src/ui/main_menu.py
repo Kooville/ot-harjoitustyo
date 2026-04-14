@@ -66,18 +66,18 @@ class MainMenu:
                                    pady=10
                                    )
 
-        logout_button.grid(row=3,
-                           column=0,
-                           sticky=constants.EW,
-                           padx=20,
-                           pady=10
-                           )
-        
-        create_item_button.grid(row=4,
+        create_item_button.grid(row=3,
                                 column=0,
                                 sticky=constants.EW,
                                 padx=20,
                                 pady=10
                                  )
+
+        logout_button.grid(row=4,
+                           column=0,
+                           sticky=constants.EW,
+                           padx=20,
+                           pady=10
+                           )
 
         self._frame.grid_columnconfigure(0, weight=1)
