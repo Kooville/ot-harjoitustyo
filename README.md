@@ -1,9 +1,9 @@
 # Food diary
 
 ## Dokumentaatio
-[Vaatimusmäärittely](https://github.com/Kooville/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/vaatimusmaarittely.md)
 
-[Työaikakirjanpito](https://github.com/Kooville/ot-harjoitustyo/blob/main/dokumentaatio/tyoaikakirjanpito.md)
+[Työaikakirjanpito](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/tyoaikakirjanpito.md)
 
 [Changelog](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/changelog.md)
 
