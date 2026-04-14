@@ -7,6 +7,8 @@
 
 [Changelog](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/changelog.md)
 
+[Arkkitehtuurikuvaus](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/arkkitehtuuri.md)
+
 ## Asennus
 
 1. Lataa repositorio omalle tietokoneellesi
