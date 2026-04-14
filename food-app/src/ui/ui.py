@@ -1,4 +1,5 @@
 from ui.create_user_view import CreateUserView
+from ui.login_view import LoginView
 from ui.start_view import StartView
 from ui.main_menu import MainMenu
 class UI:
@@ -20,7 +21,7 @@ class UI:
     def _show_start_view(self):
         self._hide_current_view()
 
-        self._current_view = StartView(self._root, self._show_create_user_view)
+        self._current_view = StartView(self._root, self._show_create_user_view, self._show_login_view)
         self._current_view.pack()
 
     def _show_create_user_view(self):
@@ -29,8 +30,14 @@ class UI:
         self._current_view = CreateUserView(self._root, self._show_main_menu)
         self._current_view.pack()
 
-    def _show_main_menu(self, user):
+    def _show_login_view(self):
         self._hide_current_view()
 
-        self._current_view = MainMenu(self._root, user)
+        self._current_view = LoginView(self._root, self._show_main_menu)
+        self._current_view.pack()
+
+    def _show_main_menu(self):
+        self._hide_current_view()
+
+        self._current_view = MainMenu(self._root, self._show_start_view)
         self._current_view.pack()

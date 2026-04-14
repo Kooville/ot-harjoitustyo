@@ -19,11 +19,11 @@ class UserRepository:
         self.connection.commit()
         return user
 
-    def get_user(self, username, password):
+    def get_user_by_username(self, username):
         """ Hakee tietokannasta käyttäjän, joka vastaa annettuja tietoja """
         cursor = self.connection.cursor()
-        cursor.execute("select * from users where username = ? and password = ?",
-                       (username, password))
+        cursor.execute("select * from users where username = ?",
+                       (username,))
         row = cursor.fetchone()
         return get_user_by_row(row)
 

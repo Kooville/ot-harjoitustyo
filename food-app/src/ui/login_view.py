@@ -2,8 +2,8 @@ from tkinter import ttk, constants, StringVar
 from services.diary_service import diary_service
 from ui.style import init_styles
 
-class CreateUserView:
-    """ Käyttöliittymä uuden käyttäjän luonnille """
+class LoginView:
+    """ Käyttöliittymä sisäänkirjautumiseen """
 
     def __init__(self, root, show_main_menu):
         self._root = root
@@ -11,7 +11,6 @@ class CreateUserView:
         self._style = init_styles()
         self._username_entry = None
         self._password_entry = None
-        self._password_confirmation_entry = None
         self._error_variable = None
         self._show_main_menu = show_main_menu
 
@@ -23,19 +22,14 @@ class CreateUserView:
     def destroy(self):
         self._frame.destroy()
 
-    def _handle_create_user_click(self):
+    def _handle_login_click(self):
         self._error_variable.set("")
         username = self._username_entry.get()
         password = self._password_entry.get()
-        password_confirmation = self._password_confirmation_entry.get()
 
         try:
-            diary_service.create_user(username,
-                                             password,
-                                             password_confirmation
-                                             )
+            diary_service.login(username, password)
             self._show_main_menu()
-
         except ValueError as error:
             self._error_variable.set(str(error))
 
@@ -85,32 +79,10 @@ class CreateUserView:
                                   pady=10
                                   )
 
-    def _initialize_password_confirmation_field(self):
-        password_confirmation_label = ttk.Label(master=self._container,
-                                                text="Salasana uudestaan",
-                                                style="Card.TLabel")
-        self._password_confirmation_entry = ttk.Entry(master=self._container,
-                                                      show="*"
-                                                      )
-
-        password_confirmation_label.grid(row=2,
-                                         column=0,
-                                         sticky=constants.W,
-                                         padx=20,
-                                         pady=10
-                                         )
-        self._password_confirmation_entry.grid(row=2,
-                                               column=1,
-                                               sticky=constants.EW,
-                                               padx=20,
-                                               pady=10
-                                               )
-
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,
                                 style="TFrame"
                                 )
-        
         self._frame.grid_rowconfigure(0, weight=1)
         self._frame.grid_rowconfigure(2, weight=1)
         self._frame.grid_columnconfigure(0, weight=1)
@@ -125,7 +97,6 @@ class CreateUserView:
 
         self._initialize_username_field()
         self._initialize_password_field()
-        self._initialize_password_confirmation_field()
 
         self._error_variable = StringVar()
         error_label = ttk.Label(
@@ -141,19 +112,19 @@ class CreateUserView:
                          pady=10
                          )
 
-        create_user_button = ttk.Button(
+        login_button = ttk.Button(
             master=self._container,
-            text="Luo käyttäjä",
-            command=self._handle_create_user_click,
+            text="Kirjaudu sisään",
+            command=self._handle_login_click,
             style="Card.TButton"
         )
 
-        create_user_button.grid(row=4,
-                                column=0,
-                                columnspan=2,
-                                sticky=constants.EW,
-                                padx=20,
-                                pady=20,
-                                )
+        login_button.grid(row=4,
+                          column=0,
+                          columnspan=2,
+                          sticky=constants.EW,
+                          padx=20,
+                          pady=20,
+                          )
         self._container.grid_columnconfigure(0, weight=1)
         self._container.grid_columnconfigure(1, weight=1)

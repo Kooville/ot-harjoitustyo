@@ -4,9 +4,10 @@ from ui.style import init_styles
 class StartView:
     """ Käyttöliittymä sovelluksen aloitussivulle  """
 
-    def __init__(self, root, handle_create_user_click):
+    def __init__(self, root, handle_create_user_click, handle_login_click):
         self._root = root
         self._handle_create_user_click = handle_create_user_click
+        self._handle_login_click = handle_login_click
         self._style = init_styles()
         self._frame = None
 
@@ -26,13 +27,18 @@ class StartView:
                           text="Tervetuloa käyttämään ruokapäiväkirjaa!",
                           anchor="center"
                           )
-        button = ttk.Button(
+        create_user_button = ttk.Button(
             master=self._frame,
             text="Luo uusi käyttäjä",
             command=self._handle_create_user_click
         )
+        login_button = ttk.Button(
+            master=self._frame,
+            text="Kirjaudu sisään",
+            command=self._handle_login_click
+        )
         self._frame.grid_rowconfigure(0, weight=1)
-        self._frame.grid_rowconfigure(3, weight=1)
+        self._frame.grid_rowconfigure(4, weight=1)
 
         label.grid(row=1,
                    column=0,
@@ -41,11 +47,17 @@ class StartView:
                    pady=10
                    )
 
-        button.grid(row=2,
+        create_user_button.grid(row=2,
                     column=0,
                     sticky=constants.EW,
                     padx=20,
                     pady=10
                     )
+        login_button.grid(row=3,
+                          column=0,
+                          sticky=constants.EW,
+                          padx=20,
+                          pady=10
+                          )
 
         self._frame.grid_columnconfigure(0, weight=1)

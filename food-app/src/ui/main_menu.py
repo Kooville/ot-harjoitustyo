@@ -1,13 +1,15 @@
 from tkinter import ttk, constants
 from ui.style import init_styles
+from services.diary_service import diary_service
 
 class MainMenu:
     """ Käyttöliittymä sovelluksen päävalikolle """
 
-    def __init__(self, root, user):
+    def __init__(self, root, start_view):
         self._root = root
-        self._user = user
+        self._user = diary_service.get_current_user()
         self._handle_view_todays_entries = None
+        self.start_view = start_view
         self._style = init_styles()
         self._frame = None
 
@@ -19,21 +21,30 @@ class MainMenu:
     def destroy(self):
         self._frame.destroy()
 
+    def _handle_logout_click(self):
+        diary_service.logout()
+        self.start_view()
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root, style="TFrame")
         
 
         label = ttk.Label(master=self._frame,
-                          text="Tervetuloa käyttämään ruokapäiväkirjaa!",
+                          text=f"Tervetuloa käyttämään ruokapäiväkirjaa {self._user.username}!",
                           anchor="center"
                           )
-        button = ttk.Button(
+        todays_entries_button = ttk.Button(
             master=self._frame,
             text="Tämän päivän tiedot",
             command=self._handle_view_todays_entries
         )
+        logout_button = ttk.Button(
+            master=self._frame,
+            text="Kirjaudu ulos",
+            command=self._handle_logout_click
+        )
         self._frame.grid_rowconfigure(0, weight=1)
-        self._frame.grid_rowconfigure(3, weight=1)
+        self._frame.grid_rowconfigure(4, weight=1)
 
         label.grid(row=1,
                    column=0,
@@ -42,11 +53,18 @@ class MainMenu:
                    pady=10
                    )
 
-        button.grid(row=2,
+        todays_entries_button.grid(row=2,
                     column=0,
                     sticky=constants.EW,
                     padx=20,
                     pady=10
                     )
+
+        logout_button.grid(row=3,
+                           column=0,
+                           sticky=constants.EW,
+                           padx=20,
+                           pady=10
+                           )
 
         self._frame.grid_columnconfigure(0, weight=1)
