@@ -45,9 +45,9 @@ class DiaryService:
         """ Kirjaa käyttäjän ulos """
         self._user = None
 
-
     def create_item(self, name, calories, carbs, protein, fat):
         """ Luo uuden ruoka-aineen """
         return self._item_repository.create_item(Item(name, calories, carbs, protein, fat))
+
 
 diary_service = DiaryService()

@@ -3,7 +3,11 @@ from database_connection import get_database_connection
 
 
 def get_item_by_row(row):
-    return Item(row["name"], row["calories"], row["carbs"], row["protein"], row["fat"]) if row else None
+    return Item(row["name"],
+                row["calories"],
+                row["carbs"],
+                row["protein"],
+                row["fat"]) if row else None
 
 
 class ItemRepository:

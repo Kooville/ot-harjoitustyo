@@ -48,25 +48,25 @@ class CreateItemView:
 
     def _initialize_name_field(self):
         name_label = ttk.Label(master=self._container,
-                                text="Nimi",
-                                style="Card.TLabel"
-                                   )
+                               text="Nimi",
+                               style="Card.TLabel"
+                               )
 
         self._name_entry = ttk.Entry(master=self._container)
 
         name_label.grid(row=0,
-                            column=0,
-                            sticky=constants.W,
-                            padx=20,
-                            pady=10
-                            )
+                        column=0,
+                        sticky=constants.W,
+                        padx=20,
+                        pady=10
+                        )
 
         self._name_entry.grid(row=0,
-                                  column=1,
-                                  sticky=constants.EW,
-                                  padx=20,
-                                  pady=10
-                                  )
+                              column=1,
+                              sticky=constants.EW,
+                              padx=20,
+                              pady=10
+                              )
 
     def _initialize_calories_field(self):
         calories_label = ttk.Label(master=self._container,
@@ -99,18 +99,18 @@ class CreateItemView:
         self._carbs_entry = ttk.Entry(master=self._container)
 
         carbs_label.grid(row=2,
-                          column=0,
-                          sticky=constants.W,
-                          padx=20,
-                          pady=10
-                          )
+                         column=0,
+                         sticky=constants.W,
+                         padx=20,
+                         pady=10
+                         )
 
         self._carbs_entry.grid(row=2,
-                                column=1,
-                                sticky=constants.EW,
-                                padx=20,
-                                pady=10
-                                )
+                               column=1,
+                               sticky=constants.EW,
+                               padx=20,
+                               pady=10
+                               )
 
     def _initialize_protein_field(self):
         protein_label = ttk.Label(master=self._container,
@@ -121,18 +121,18 @@ class CreateItemView:
         self._protein_entry = ttk.Entry(master=self._container)
 
         protein_label.grid(row=3,
-                            column=0,
-                            sticky=constants.W,
-                            padx=20,
-                            pady=10
-                            )
+                           column=0,
+                           sticky=constants.W,
+                           padx=20,
+                           pady=10
+                           )
 
         self._protein_entry.grid(row=3,
-                                  column=1,
-                                  sticky=constants.EW,
-                                  padx=20,
-                                  pady=10
-                                  )
+                                 column=1,
+                                 sticky=constants.EW,
+                                 padx=20,
+                                 pady=10
+                                 )
 
     def _initialize_fat_field(self):
         fat_label = ttk.Label(master=self._container,
@@ -143,19 +143,18 @@ class CreateItemView:
         self._fat_entry = ttk.Entry(master=self._container)
 
         fat_label.grid(row=4,
-                        column=0,
-                        sticky=constants.W,
-                        padx=20,
-                        pady=10
-                        )
+                       column=0,
+                       sticky=constants.W,
+                       padx=20,
+                       pady=10
+                       )
 
         self._fat_entry.grid(row=4,
-                              column=1,
-                              sticky=constants.EW,
-                              padx=20,
-                              pady=10
-                              )
-
+                             column=1,
+                             sticky=constants.EW,
+                             padx=20,
+                             pady=10
+                             )
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,

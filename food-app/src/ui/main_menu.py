@@ -71,7 +71,7 @@ class MainMenu:
                                 sticky=constants.EW,
                                 padx=20,
                                 pady=10
-                                 )
+                                )
 
         logout_button.grid(row=4,
                            column=0,
