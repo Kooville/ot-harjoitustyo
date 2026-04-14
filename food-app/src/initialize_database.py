@@ -5,10 +5,11 @@ def drop_tables(connection):
     """ Poistaa tietokannasta aiemmin luodut taulut """
     cursor = connection.cursor()
 
-    cursor.execute('''
+    cursor.executescript('''
                    drop table if exists users;
+                   drop table if exists items;
+                   drop table if exists meals;
                    ''')
-
     connection.commit()
 
 
@@ -18,7 +19,7 @@ def create_tables(connection):
 
     with open("src/schema.sql", encoding="utf-8") as f:
         sql = f.read()
-    cursor.execute(sql)
+    cursor.executescript(sql)
 
     connection.commit()
 
