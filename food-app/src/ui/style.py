@@ -14,6 +14,12 @@ def init_styles():
                     font=("Arial", 12)
                     )
 
+    style.configure("Title.TLabel",
+                    background="#7fddff",
+                    foreground="#2F2F2F",
+                    font=("Arial", 36, "bold")
+                    )
+
     style.configure("TButton",
                     background="#ffffff",
                     foreground="black",

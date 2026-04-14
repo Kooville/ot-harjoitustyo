@@ -162,7 +162,8 @@ class CreateItemView:
                                 )
 
         self._frame.grid_rowconfigure(0, weight=0)
-        self._frame.grid_rowconfigure(1, weight=1)
+        self._frame.grid_rowconfigure(1, weight=0)
+        self._frame.grid_rowconfigure(2, weight=1)
         self._frame.grid_columnconfigure(0, weight=1)
 
         back_button = ttk.Button(
@@ -180,11 +181,23 @@ class CreateItemView:
         pady=10
         )
 
+        title_label = ttk.Label(
+            master=self._frame,
+            text="Lisää uusi ruoka-aine",
+            style="Title.TLabel"
+        )
+
+        title_label.grid(
+            row=1,
+            column=0,
+            pady=(100, 50)
+        )
+
         container = ttk.Frame(self._frame,
                               padding=30,
                               style="Card.TFrame"
                               )
-        container.grid(row=1, column=0, sticky="")
+        container.grid(row=2, column=0, sticky="n")
         self._container = container
 
         self._initialize_name_field()
