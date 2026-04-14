@@ -2,6 +2,7 @@ from entities.user import User
 
 from repositories.user_repository import user_repository as default_user_repository
 
+
 class DiaryService:
     """ Luokka, joka sisältää sovelluslogiikan """
 
@@ -13,7 +14,7 @@ class DiaryService:
         """ Luo uuden käyttäjän """
         if password != password_confirmation:
             raise ValueError("Salasanat eivät täsmää")
-        
+
         existing_user = self._user_repository.get_user_by_username(username)
 
         if existing_user:
@@ -41,5 +42,6 @@ class DiaryService:
     def logout(self):
         """ Kirjaa käyttäjän ulos """
         self._user = None
+
 
 diary_service = DiaryService()

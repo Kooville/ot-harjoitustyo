@@ -2,6 +2,7 @@ from tkinter import ttk, constants, StringVar
 from services.diary_service import diary_service
 from ui.style import init_styles
 
+
 class LoginView:
     """ Käyttöliittymä sisäänkirjautumiseen """
 

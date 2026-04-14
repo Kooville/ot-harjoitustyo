@@ -1,6 +1,7 @@
 from tkinter import ttk, constants
 from ui.style import init_styles
 
+
 class StartView:
     """ Käyttöliittymä sovelluksen aloitussivulle  """
 
@@ -21,7 +22,6 @@ class StartView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root, style="TFrame")
-        
 
         label = ttk.Label(master=self._frame,
                           text="Tervetuloa käyttämään ruokapäiväkirjaa!",
@@ -48,11 +48,11 @@ class StartView:
                    )
 
         create_user_button.grid(row=2,
-                    column=0,
-                    sticky=constants.EW,
-                    padx=20,
-                    pady=10
-                    )
+                                column=0,
+                                sticky=constants.EW,
+                                padx=20,
+                                pady=10
+                                )
         login_button.grid(row=3,
                           column=0,
                           sticky=constants.EW,

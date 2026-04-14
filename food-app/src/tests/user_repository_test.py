@@ -2,6 +2,7 @@ import unittest
 from entities.user import User
 from repositories.user_repository import user_repository
 
+
 class TestUser(unittest.TestCase):
     def test_create_user(self):
         user = User("ville", "salasana")
@@ -14,4 +15,3 @@ class TestUser(unittest.TestCase):
         retrieved_user = user_repository.get_user("ville", "salasana")
         self.assertEqual(retrieved_user.username, "ville")
         self.assertEqual(retrieved_user.password, "salasana")
-

@@ -1,5 +1,6 @@
 from database_connection import get_database_connection
 
+
 def drop_tables(connection):
     """ Poistaa tietokannasta aiemmin luodut taulut """
     cursor = connection.cursor()

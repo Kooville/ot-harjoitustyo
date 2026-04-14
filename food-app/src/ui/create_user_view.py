@@ -2,6 +2,7 @@ from tkinter import ttk, constants, StringVar
 from services.diary_service import diary_service
 from ui.style import init_styles
 
+
 class CreateUserView:
     """ Käyttöliittymä uuden käyttäjän luonnille """
 
@@ -31,9 +32,9 @@ class CreateUserView:
 
         try:
             diary_service.create_user(username,
-                                             password,
-                                             password_confirmation
-                                             )
+                                      password,
+                                      password_confirmation
+                                      )
             self._show_main_menu()
 
         except ValueError as error:
@@ -110,7 +111,7 @@ class CreateUserView:
         self._frame = ttk.Frame(master=self._root,
                                 style="TFrame"
                                 )
-        
+
         self._frame.grid_rowconfigure(0, weight=1)
         self._frame.grid_rowconfigure(2, weight=1)
         self._frame.grid_columnconfigure(0, weight=1)

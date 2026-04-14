@@ -2,6 +2,7 @@ from tkinter import ttk, constants
 from ui.style import init_styles
 from services.diary_service import diary_service
 
+
 class MainMenu:
     """ Käyttöliittymä sovelluksen päävalikolle """
 
@@ -27,7 +28,6 @@ class MainMenu:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root, style="TFrame")
-        
 
         label = ttk.Label(master=self._frame,
                           text=f"Tervetuloa käyttämään ruokapäiväkirjaa {self._user.username}!",
@@ -54,11 +54,11 @@ class MainMenu:
                    )
 
         todays_entries_button.grid(row=2,
-                    column=0,
-                    sticky=constants.EW,
-                    padx=20,
-                    pady=10
-                    )
+                                   column=0,
+                                   sticky=constants.EW,
+                                   padx=20,
+                                   pady=10
+                                   )
 
         logout_button.grid(row=3,
                            column=0,
