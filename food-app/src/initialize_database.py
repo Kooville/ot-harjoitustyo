@@ -16,7 +16,7 @@ def create_tables(connection):
     """ Luo tietokantaan uudet taulut jotka määritelty schema.sql tiedostossa """
     cursor = connection.cursor()
 
-    with open("src/schema.sql") as f:
+    with open("src/schema.sql", encoding="utf-8") as f:
         sql = f.read()
     cursor.execute(sql)
 
