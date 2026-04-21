@@ -13,3 +13,11 @@
 - Sovellukseen pystyy kirjautumaan sisään ja ulos
 - Sovellukselle lisätty päävalikko
 - Sovellukseen pystyy lisätä ruoka-aineita ja ne tallentuvat tietokantaan
+
+
+## Viikko 5
+
+- Sovellukseen pystyy koostamaan aterioita jo lisätyistä ruoka-aineista
+- Sovelluksessa on sivu lisätyille aterioille
+- Lisätyt ateriat sivulta pääsee lisäämään uusia aterioita
+- Ateriat tallentuvat tietokantaan omaan tauluunsa
