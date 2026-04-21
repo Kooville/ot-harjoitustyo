@@ -39,14 +39,13 @@ class ItemRepository:
         rows = cursor.fetchall()
         return [get_item_by_row(row) for row in rows]
 
-    def get_nutrients_by_multiplier(self, item, multiplier):
+    def get_item_by_multiplier(self, item, multiplier):
         """ Palauttaa halutun ruoka-aineen ravintoarvot kerrottuna valitulla määrällä """
-        nutrients = {
-            "calories": item.calories * multiplier,
-            "carbs": item.carbs * multiplier,
-            "protein": item.protein * multiplier,
-            "fat": item.fat * multiplier
-        }
-        return nutrients
+        multiplied_item = Item(item.name,
+                               item.calories*multiplier,
+                               item.carbs*multiplier,
+                               item.protein*multiplier,
+                               item.fat*multiplier)
+        return multiplied_item
 
 item_repository = ItemRepository(get_database_connection())

@@ -15,7 +15,9 @@ CREATE TABLE items (
 
 CREATE TABLE meals (
     id INTEGER PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
     name TEXT,
-    items TEXT
+    calories INTEGER,
+    carbs INTEGER,
+    protein INTEGER,
+    fat INTEGER
     );

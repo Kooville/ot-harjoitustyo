@@ -210,7 +210,7 @@ class CreateItemView:
 
         create_item_button = ttk.Button(
             master=self._container,
-            text="Luo ruoka-aine",
+            text="Lisää ruoka-aine",
             command=self._handle_create_item_click,
             style="Card.TButton"
         )
