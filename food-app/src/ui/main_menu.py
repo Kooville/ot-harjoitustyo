@@ -6,14 +6,13 @@ from services.diary_service import diary_service
 class MainMenu:
     """ Käyttöliittymä sovelluksen päävalikolle """
 
-    def __init__(self, root, start_view, all_meals_view, create_item_view, create_meal_view):
+    def __init__(self, root, start_view, all_meals_view, create_item_view):
         self._root = root
         self._user = diary_service.get_current_user()
         self._handle_view_todays_entries = None
         self.start_view = start_view
         self.all_meals_view = all_meals_view
         self.create_item_view = create_item_view
-        self.create_meal_view = create_meal_view
         self._style = init_styles()
         self._frame = None
 
@@ -46,11 +45,6 @@ class MainMenu:
             text="Lisätyt ateriat",
             command=self.all_meals_view
         )
-        create_meal_button = ttk.Button(
-            master=self._frame,
-            text="Luo uusi ateria",
-            command=self.create_meal_view
-        )
         create_item_button = ttk.Button(
             master=self._frame,
             text="Lisää ruoka-aine",
@@ -79,13 +73,6 @@ class MainMenu:
                                    )
 
         show_all_meals_button.grid(row=3,
-                                column=0,
-                                sticky=constants.EW,
-                                padx=20,
-                                pady=10
-                                )
-
-        create_meal_button.grid(row=4,
                                 column=0,
                                 sticky=constants.EW,
                                 padx=20,

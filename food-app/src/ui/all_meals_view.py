@@ -94,14 +94,14 @@ class AllMealsView:
 
         self._initialize_meals_list()
 
-        create_user_button = ttk.Button(
+        create_meal_button = ttk.Button(
             master=self._container,
             text="Lisää ateria",
             command=self._handle_create_meal_click,
             style="Card.TButton"
         )
 
-        create_user_button.grid(row=3,
+        create_meal_button.grid(row=len(self._meals) + 1,
                                 column=0,
                                 columnspan=2,
                                 sticky=constants.EW,

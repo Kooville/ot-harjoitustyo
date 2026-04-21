@@ -6,13 +6,13 @@ from ui.style import init_styles
 class CreateMealView:
     """ Käyttöliittymä uuden aterian luonnille """
 
-    def __init__(self, root, show_main_menu):
+    def __init__(self, root, show_all_meals_view):
         self._root = root
         self._frame = None
         self._style = init_styles()
         self._name_entry = None
         self._items = diary_service.get_all_items()
-        self._show_main_menu = show_main_menu
+        self._show_all_meals_view = show_all_meals_view
         self._item_vars = {}  # item_name: (selected_var, amount_var)
 
         self._initialize()
@@ -45,7 +45,7 @@ class CreateMealView:
 
         try:
             diary_service.create_meal(name, selected_items)
-            self._show_main_menu()
+            self._show_all_meals_view()
 
         except ValueError as error:
             self._error_variable.set(str(error))
@@ -138,7 +138,7 @@ class CreateMealView:
         back_button = ttk.Button(
             master=self._frame,
             text="←",
-            command=self._show_main_menu,
+            command=self._show_all_meals_view,
             style="TButton"
         )
 
