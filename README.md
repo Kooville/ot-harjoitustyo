@@ -1,5 +1,7 @@
 # Food diary
 
+Sovellus tulee toimimaan ruokapäiväkirjana, johon käyttäjä pystyy merkitä päivän aikana syömänsä ateriat ja sovellus koostaa niistä olennaiset tiedot yhteenvetoon. Sovellukseen voi lisätä ruoka-aineita listaamalla ravinto-aineet ja koostaa niistä aterioita. Lisäksi sovellus tulee pitämään sisällään yhteenvedon aiemmista päivistä.
+
 ## Dokumentaatio
 [Vaatimusmäärittely](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/vaatimusmaarittely.md)
 
@@ -8,6 +10,8 @@
 [Changelog](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/changelog.md)
 
 [Arkkitehtuurikuvaus](https://github.com/Kooville/ot-harjoitustyo/blob/main/food-app/dokumentaatio/arkkitehtuuri.md)
+
+[Viikon 5 release](https://github.com/Kooville/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Asennus
 
