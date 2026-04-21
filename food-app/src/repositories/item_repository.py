@@ -42,10 +42,10 @@ class ItemRepository:
     def get_item_by_multiplier(self, item, multiplier):
         """ Palauttaa halutun ruoka-aineen ravintoarvot kerrottuna valitulla määrällä """
         multiplied_item = Item(item.name,
-                               item.calories*multiplier,
-                               item.carbs*multiplier,
-                               item.protein*multiplier,
-                               item.fat*multiplier)
+                               item.calories*multiplier/100,
+                               item.carbs*multiplier/100,
+                               item.protein*multiplier/100,
+                               item.fat*multiplier/100)
         return multiplied_item
 
 item_repository = ItemRepository(get_database_connection())

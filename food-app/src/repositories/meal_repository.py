@@ -20,4 +20,11 @@ class MealRepository:
         self.connection.commit()
         return meal
 
+    def get_all_meals(self):
+        """ Hakee tietokannasta kaikki ateriat """
+        cursor = self.connection.cursor()
+        cursor.execute("select * from meals")
+        rows = cursor.fetchall()
+        return [get_meal_by_row(row) for row in rows]
+
 meal_repository = MealRepository(get_database_connection())

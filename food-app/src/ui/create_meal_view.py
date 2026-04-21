@@ -95,11 +95,21 @@ class CreateMealView:
                 variable=selected_var
             )
 
+            amount_frame = ttk.Frame(master=self._container)
+            amount_label = ttk.Label(master=amount_frame, text="Määrä:")
+
             amount_entry = ttk.Entry(
-                master=self._container,
-                textvariable=amount_var,
-                width=10
+            master=amount_frame,
+            textvariable=amount_var,
+            width=10
             )
+
+            unit_label = ttk.Label(master=amount_frame, text="g")
+
+            amount_label.pack(side="left")
+            amount_entry.pack(side="left", padx=(5, 0))
+            unit_label.pack(side="left")
+
 
             checkbox.grid(row=2 + index,
                           column=0,
@@ -107,7 +117,7 @@ class CreateMealView:
                           padx=20,
                           pady=5
                           )
-            amount_entry.grid(row=2 + index,
+            amount_frame.grid(row=2 + index,
                               column=1,
                               sticky=constants.EW,
                               padx=20,

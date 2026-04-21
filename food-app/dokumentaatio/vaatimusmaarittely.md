@@ -45,11 +45,11 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
     - [ ] Mahdollisuus lisätä ja poistaa aterioita
 
-    - [ ] Käyttäjä voi tallentaa sovellukseen aterioita, koostamalla tallentamistaan ruoka-aineista tai myöhemmin tuotteiden nimillä ja määrillä
+    - [x] Käyttäjä voi tallentaa sovellukseen aterioita, koostamalla tallentamistaan ruoka-aineista tai myöhemmin tuotteiden nimillä ja määrillä
   
-  - [ ] Käyttäjä voi lisätä ruoka-aineita
+  - [x] Käyttäjä voi lisätä ruoka-aineita
     
-    - [ ] Aluksi itse kirjaamalla ravintoarvot
+    - [x] Aluksi itse kirjaamalla ravintoarvot
 
     - [ ] Myöhemmin jos mahdollista niin tuotteen nimellä haetaan julkisesta tietokannasta tiedot
 
