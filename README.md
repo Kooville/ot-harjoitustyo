@@ -35,3 +35,19 @@ poetry run invoke build
 poetry run invoke start
 ```
 
+Muita suoritettavia komentoja
+
+- Testien suorittaminen
+```bash
+poetry run invoke test
+```
+
+- Pylint tarkistus
+```bash
+poetry run invoke lint
+```
+
+- Testikattavuusraportti
+```bash
+poetry run invoke coverage-report
+```
