@@ -49,5 +49,8 @@ class DiaryService:
         """ Luo uuden ruoka-aineen """
         return self._item_repository.create_item(Item(name, calories, carbs, protein, fat))
 
+    def get_all_items(self):
+        """ Palauttaa kaikki ruoka-aineet """
+        return self._item_repository.get_all_items()
 
 diary_service = DiaryService()

@@ -32,5 +32,21 @@ class ItemRepository:
         row = cursor.fetchone()
         return get_item_by_row(row)
 
+    def get_all_items(self):
+        """ Hakee tietokannasta kaikki ruoka-aineet """
+        cursor = self.connection.cursor()
+        cursor.execute("select * from items")
+        rows = cursor.fetchall()
+        return [get_item_by_row(row) for row in rows]
+
+    def get_nutrients_by_multiplier(self, item, multiplier):
+        """ Palauttaa halutun ruoka-aineen ravintoarvot kerrottuna valitulla määrällä """
+        nutrients = {
+            "calories": item.calories * multiplier,
+            "carbs": item.carbs * multiplier,
+            "protein": item.protein * multiplier,
+            "fat": item.fat * multiplier
+        }
+        return nutrients
 
 item_repository = ItemRepository(get_database_connection())
