@@ -41,7 +41,7 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali k채ytt채j채rooli, mutta my�
 
   - [ ] Koosteeseen aiempien p채ivien tiedoista
 
-  - [ ] Tallennettujen aterioiden listaan
+  - [x] Tallennettujen aterioiden listaan
 
     - [ ] Mahdollisuus lis채t채 ja poistaa aterioita
 
