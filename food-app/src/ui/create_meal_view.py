@@ -13,7 +13,7 @@ class CreateMealView:
         self._name_entry = None
         self._items = diary_service.get_all_items()
         self._show_main_menu = show_main_menu
-        self._item_vars = {} # item_name: (selected_var, amount_var)
+        self._item_vars = {}  # item_name: (selected_var, amount_var)
 
         self._initialize()
 
@@ -35,10 +35,12 @@ class CreateMealView:
                 try:
                     amount = float(amount_var.get())
                     if amount <= 0:
-                        raise ValueError("Määrän tulee olla positiivinen luku.")
+                        raise ValueError(
+                            "Määrän tulee olla positiivinen luku.")
                     selected_items.append((item, amount))
                 except ValueError:
-                    self._error_variable.set(f"Virheellinen määrä ruoka-aineelle {item.name}.")
+                    self._error_variable.set(
+                        f"Virheellinen määrä ruoka-aineelle {item.name}.")
                     return
 
         try:
@@ -99,9 +101,9 @@ class CreateMealView:
             amount_label = ttk.Label(master=amount_frame, text="Määrä:")
 
             amount_entry = ttk.Entry(
-            master=amount_frame,
-            textvariable=amount_var,
-            width=10
+                master=amount_frame,
+                textvariable=amount_var,
+                width=10
             )
 
             unit_label = ttk.Label(master=amount_frame, text="g")
@@ -109,7 +111,6 @@ class CreateMealView:
             amount_label.pack(side="left")
             amount_entry.pack(side="left", padx=(5, 0))
             unit_label.pack(side="left")
-
 
             checkbox.grid(row=2 + index,
                           column=0,
@@ -124,7 +125,6 @@ class CreateMealView:
                               pady=5
                               )
 
-
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,
                                 style="TFrame"
@@ -136,18 +136,18 @@ class CreateMealView:
         self._frame.grid_columnconfigure(0, weight=1)
 
         back_button = ttk.Button(
-        master=self._frame,
-        text="←",
-        command=self._show_main_menu,
-        style="TButton"
+            master=self._frame,
+            text="←",
+            command=self._show_main_menu,
+            style="TButton"
         )
 
         back_button.grid(
-        row=0,
-        column=0,
-        sticky=constants.W,
-        padx=10,
-        pady=10
+            row=0,
+            column=0,
+            sticky=constants.W,
+            padx=10,
+            pady=10
         )
 
         title_label = ttk.Label(
@@ -171,7 +171,6 @@ class CreateMealView:
 
         self._initialize_name_field()
         self._initialize_choose_items_field()
-
 
         self._error_variable = StringVar()
 

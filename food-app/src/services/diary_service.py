@@ -9,7 +9,10 @@ from repositories.user_repository import user_repository as default_user_reposit
 class DiaryService:
     """ Luokka, joka sisältää sovelluslogiikan """
 
-    def __init__(self, user_repository=default_user_repository, item_repository=default_item_repository, meal_repository=default_meal_repository):
+    def __init__(self,
+                 user_repository=default_user_repository,
+                 item_repository=default_item_repository,
+                 meal_repository=default_meal_repository):
         self._user = None
         self._user_repository = user_repository
         self._item_repository = item_repository
@@ -60,9 +63,11 @@ class DiaryService:
         """ Luo uuden aterian """
         items = []
         for item in selected_items:
-            multiplied_item = self._item_repository.get_item_by_multiplier(item[0], item[1])
+            multiplied_item = self._item_repository.get_item_by_multiplier(
+                item[0], item[1])
             items.append(multiplied_item)
 
         return self._meal_repository.create_meal(Meal(name, items))
+
 
 diary_service = DiaryService()

@@ -91,18 +91,18 @@ class LoginView:
         self._frame.grid_columnconfigure(0, weight=1)
 
         back_button = ttk.Button(
-        master=self._frame,
-        text="←",
-        command=self._show_start_view,
-        style="TButton"
+            master=self._frame,
+            text="←",
+            command=self._show_start_view,
+            style="TButton"
         )
 
         back_button.grid(
-        row=0,
-        column=0,
-        sticky=constants.W,
-        padx=10,
-        pady=10
+            row=0,
+            column=0,
+            sticky=constants.W,
+            padx=10,
+            pady=10
         )
 
         title_label = ttk.Label(

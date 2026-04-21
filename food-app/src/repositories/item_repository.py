@@ -48,4 +48,5 @@ class ItemRepository:
                                item.fat*multiplier/100)
         return multiplied_item
 
+
 item_repository = ItemRepository(get_database_connection())

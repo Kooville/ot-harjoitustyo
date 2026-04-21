@@ -27,4 +27,5 @@ class MealRepository:
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
 
+
 meal_repository = MealRepository(get_database_connection())

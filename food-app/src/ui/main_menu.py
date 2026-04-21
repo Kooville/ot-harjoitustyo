@@ -71,7 +71,7 @@ class MainMenu:
                                    padx=20,
                                    pady=10
                                    )
-        
+
         create_meal_button.grid(row=3,
                                 column=0,
                                 sticky=constants.EW,
