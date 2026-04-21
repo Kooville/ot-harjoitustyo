@@ -6,13 +6,14 @@ from services.diary_service import diary_service
 class MainMenu:
     """ Käyttöliittymä sovelluksen päävalikolle """
 
-    def __init__(self, root, start_view, create_meal_view, create_item_view):
+    def __init__(self, root, start_view, all_meals_view, create_item_view, create_meal_view):
         self._root = root
         self._user = diary_service.get_current_user()
         self._handle_view_todays_entries = None
         self.start_view = start_view
-        self.create_meal_view = create_meal_view
+        self.all_meals_view = all_meals_view
         self.create_item_view = create_item_view
+        self.create_meal_view = create_meal_view
         self._style = init_styles()
         self._frame = None
 
@@ -40,9 +41,14 @@ class MainMenu:
             text="Tämän päivän tiedot",
             command=self._handle_view_todays_entries
         )
+        show_all_meals_button = ttk.Button(
+            master=self._frame,
+            text="Lisätyt ateriat",
+            command=self.all_meals_view
+        )
         create_meal_button = ttk.Button(
             master=self._frame,
-            text="Lisää ateria",
+            text="Luo uusi ateria",
             command=self.create_meal_view
         )
         create_item_button = ttk.Button(
@@ -56,7 +62,7 @@ class MainMenu:
             command=self._handle_logout_click
         )
         self._frame.grid_rowconfigure(0, weight=1)
-        self._frame.grid_rowconfigure(6, weight=1)
+        self._frame.grid_rowconfigure(7, weight=1)
 
         label.grid(row=1,
                    column=0,
@@ -72,21 +78,28 @@ class MainMenu:
                                    pady=10
                                    )
 
-        create_meal_button.grid(row=3,
+        show_all_meals_button.grid(row=3,
                                 column=0,
                                 sticky=constants.EW,
                                 padx=20,
                                 pady=10
                                 )
 
-        create_item_button.grid(row=4,
+        create_meal_button.grid(row=4,
                                 column=0,
                                 sticky=constants.EW,
                                 padx=20,
                                 pady=10
                                 )
 
-        logout_button.grid(row=5,
+        create_item_button.grid(row=5,
+                                column=0,
+                                sticky=constants.EW,
+                                padx=20,
+                                pady=10
+                                )
+
+        logout_button.grid(row=6,
                            column=0,
                            sticky=constants.EW,
                            padx=20,

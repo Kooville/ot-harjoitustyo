@@ -66,8 +66,15 @@ class DiaryService:
             multiplied_item = self._item_repository.get_item_by_multiplier(
                 item[0], item[1])
             items.append(multiplied_item)
+        calories = sum(item.calories for item in items)
+        carbs = sum(item.carbs for item in items)
+        protein = sum(item.protein for item in items)
+        fat = sum(item.fat for item in items)
 
-        return self._meal_repository.create_meal(Meal(name, items))
+        return self._meal_repository.create_meal(Meal(name, calories, carbs, protein, fat))
 
+    def get_all_meals(self):
+        """ Palauttaa kaikki ateriat """
+        return self._meal_repository.get_all_meals()
 
 diary_service = DiaryService()
