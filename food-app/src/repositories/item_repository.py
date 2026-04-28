@@ -34,8 +34,14 @@ class ItemRepository:
         """
 
         cursor = self.connection.cursor()
-        cursor.execute("insert into items (name, calories, carbs, protein, fat) "
-                       "values (?, ?, ?, ?, ?)",
+        cursor.execute("""insert into items (
+                            name,
+                            calories,
+                            carbs,
+                            protein,
+                            fat
+                        ) values (?, ?, ?, ?, ?)
+                       """,
                        (item.name, item.calories, item.carbs, item.protein, item.fat))
         self.connection.commit()
         item.id = cursor.lastrowid

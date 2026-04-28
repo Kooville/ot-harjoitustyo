@@ -34,8 +34,14 @@ class MealRepository:
         """
 
         cursor = self.connection.cursor()
-        cursor.execute("insert into meals (name, calories, carbs, protein, fat)"
-                       " values (?, ?, ?, ?, ?)",
+        cursor.execute("""insert into meals (
+                            name,
+                            calories,
+                            carbs,
+                            protein,
+                            fat
+                        ) values (?, ?, ?, ?, ?)
+                       """,
                        (meal.name, meal.calories, meal.carbs, meal.protein, meal.fat))
         self.connection.commit()
         meal.id = cursor.lastrowid

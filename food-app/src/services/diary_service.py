@@ -16,10 +16,16 @@ class DiaryService:
         """Luokan konstruktori joka perustaa sovelluslogiikasta vastaavan toiminnon
 
         Args:
-            user_repository: Käyttäjätietokannan repository. Defaults to default_user_repository.
-            item_repository: Ruoka-aineiden tietokannan repository. Defaults to default_item_repository.
-            meal_repository: Aterioiden tietokannan repository. Defaults to default_meal_repository.
+            user_repository:
+            Käyttäjätietokannan repository. Defaults to default_user_repository.
+
+            item_repository:
+            Ruoka-aineiden tietokannan repository. Defaults to default_item_repository.
+    
+            meal_repository:
+            Aterioiden tietokannan repository. Defaults to default_meal_repository.
         """
+
         self._user = None
         self._user_repository = user_repository
         self._item_repository = item_repository
@@ -31,7 +37,7 @@ class DiaryService:
         Args:
             username: Käyttäjätunnus, joka halutaan luoda
             password: Salasana, joka halutaan asettaa uudelle käyttäjälle
-            password_confirmation: Salasana uudestaan, varmistetaan että käyttäjä on kirjoittanut salasanan oikein
+            password_confirmation: Salasanan varmistus
 
         Returns:
             User-olio, joka on luotu ja lisätty tietokantaan

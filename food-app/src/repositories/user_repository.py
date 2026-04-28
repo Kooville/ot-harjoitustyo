@@ -3,7 +3,12 @@ from database_connection import get_database_connection
 
 
 def get_user_by_row(row):
-    return User(row["username"], row["password"], row["goal_calories"], row["today_calories"], row["id"]) if row else None
+    return User(
+        row["username"],
+        row["password"],
+        row["goal_calories"],
+        row["today_calories"],
+        row["id"]) if row else None
 
 
 class UserRepository:
@@ -29,8 +34,15 @@ class UserRepository:
         """
 
         cursor = self.connection.cursor()
-        cursor.execute("insert into users (username, password, goal_calories, today_calories) values (?, ?, ?, ?)",
-                       (user.username, user.password, user.goal_calories, user.today_calories))
+        cursor.execute(
+            """insert into users (
+                username,
+                password,
+                goal_calories,
+                today_calories
+            ) values (?, ?, ?, ?)
+            """,
+            (user.username, user.password, user.goal_calories, user.today_calories))
         self.connection.commit()
         user.id = cursor.lastrowid
         return user
