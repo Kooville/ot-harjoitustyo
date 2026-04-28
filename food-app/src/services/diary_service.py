@@ -73,6 +73,10 @@ class DiaryService:
 
         return self._meal_repository.create_meal(Meal(name, calories, carbs, protein, fat))
 
+    def delete_meal(self, meal_id):
+        """ Poistaa aterian """
+        self._meal_repository.delete_meal(meal_id)
+
     def get_all_meals(self):
         """ Palauttaa kaikki ateriat """
         return self._meal_repository.get_all_meals()

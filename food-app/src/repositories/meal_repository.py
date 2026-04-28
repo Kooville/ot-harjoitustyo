@@ -7,7 +7,8 @@ def get_meal_by_row(row):
                 row["calories"],
                 row["carbs"],
                 row["protein"],
-                row["fat"]) if row else None
+                row["fat"],
+                row["id"]) if row else None
 
 
 class MealRepository:
@@ -23,7 +24,14 @@ class MealRepository:
                        " values (?, ?, ?, ?, ?)",
                        (meal.name, meal.calories, meal.carbs, meal.protein, meal.fat))
         self.connection.commit()
+        meal.id = cursor.lastrowid
         return meal
+    
+    def delete_meal(self, meal_id):
+        """ Poistaa aterian tietokannasta """
+        cursor = self.connection.cursor()
+        cursor.execute("delete from meals where id = ?", (meal_id,))
+        self.connection.commit()
 
     def get_all_meals(self):
         """ Hakee tietokannasta kaikki ateriat """

@@ -24,24 +24,39 @@ class AllMealsView:
         self._frame.destroy()
 
     def _initialize_meals_list(self):
-        if not self._meals:
-            no_meals_label = ttk.Label(
-                master=self._container,
-                text="Ei aterioita",
-                style="Card.TLabel"
-            )
-            no_meals_label.grid(row=0, column=0, pady=20)
-        else:
-            for index, meal in enumerate(self._meals):
-                meal_label = ttk.Label(
-                    master=self._container,
-                    text=f"{meal.name}: {meal.calories:.1f} kcal, "
-                         f"{meal.carbs:.1f} g hiilihydraatteja, "
-                         f"{meal.protein:.1f} g proteiinia, "
-                         f"{meal.fat:.1f} g rasvaa",
-                    style="Card.TLabel"
+            self._tree = ttk.Treeview(self._container, columns=("name", "kcal", "carbs", "protein", "fat"), show="headings")
+
+            self._tree.heading("name", text="Nimi")
+            self._tree.heading("kcal", text="Kalorit")
+            self._tree.heading("carbs", text="Hiilihydraatit")
+            self._tree.heading("protein", text="Proteiini")
+            self._tree.heading("fat", text="Rasva")
+
+            self._tree.grid(row=0, column=0, sticky="nsew")
+
+            for meal in self._meals:
+                self._tree.insert(
+                    "",
+                    "end",
+                    iid=str(meal.id),
+                    values=(meal.name, meal.calories, meal.carbs, meal.protein, meal.fat)
                 )
-                meal_label.grid(row=index, column=0, sticky="W", pady=10)
+
+            self._tree.bind("<<TreeviewSelect>>", self._on_meal_select)
+   
+    def _on_meal_select(self, event):
+        selected_item = self._tree.selection()
+        if selected_item:
+            item = selected_item[0]
+            index = self._tree.index(item)
+
+    def _delete_selected_meal(self):
+        selected_item = self._tree.selection()
+        if selected_item:
+            meal_id = selected_item[0]
+            diary_service.delete_meal(int(meal_id))
+            self._meals = [meal for meal in self._meals if meal.id != meal_id]
+            self._tree.delete(meal_id)
 
     def _handle_create_meal_click(self):
         self._show_create_meal_view()
@@ -87,26 +102,44 @@ class AllMealsView:
 
         container = ttk.Frame(self._frame,
                               padding=30,
-                              style="Card.TFrame"
+                              style="TFrame"
                               )
         container.grid(row=2, column=0, sticky="n")
         self._container = container
 
         self._initialize_meals_list()
 
+        button_frame = ttk.Frame(self._container, style="TFrame")
+        button_frame.grid(row=0, column=1, sticky="n", padx=0, pady=0)
+
         create_meal_button = ttk.Button(
-            master=self._container,
+            master=button_frame,
             text="Lisää ateria",
             command=self._handle_create_meal_click,
             style="Card.TButton"
         )
 
-        create_meal_button.grid(row=len(self._meals) + 1,
+        create_meal_button.grid(row=0,
                                 column=0,
-                                columnspan=2,
-                                sticky=constants.EW,
-                                padx=20,
-                                pady=20,
+                                columnspan=1,
+                                sticky=constants.NW,
+                                padx=10,
+                                pady=5
                                 )
+        
+        create_delete_button = ttk.Button(
+            button_frame,
+            text="Poista ateria",
+            style="Card.TButton",
+            command=self._delete_selected_meal
+        )
+        create_delete_button.grid(row=1,
+                                  column=0,
+                                  columnspan=1,
+                                  sticky=constants.NW,
+                                  padx=10,
+                                  pady=5
+                                  )
+
         self._container.grid_columnconfigure(0, weight=1)
-        self._container.grid_columnconfigure(1, weight=1)
+        self._container.grid_columnconfigure(2, weight=1)

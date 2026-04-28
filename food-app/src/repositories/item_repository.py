@@ -7,7 +7,8 @@ def get_item_by_row(row):
                 row["calories"],
                 row["carbs"],
                 row["protein"],
-                row["fat"]) if row else None
+                row["fat"],
+                row["id"]) if row else None
 
 
 class ItemRepository:
@@ -23,6 +24,7 @@ class ItemRepository:
                        "values (?, ?, ?, ?, ?)",
                        (item.name, item.calories, item.carbs, item.protein, item.fat))
         self.connection.commit()
+        item.id = cursor.lastrowid
         return item
 
     def get_item_by_name(self, name):
@@ -46,7 +48,8 @@ class ItemRepository:
                                item.calories*multiplier/100,
                                item.carbs*multiplier/100,
                                item.protein*multiplier/100,
-                               item.fat*multiplier/100)
+                               item.fat*multiplier/100,
+                               item.id)
         return multiplied_item
 
 
