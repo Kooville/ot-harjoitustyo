@@ -68,28 +68,28 @@ class MainMenu:
         todays_entries_button.grid(row=2,
                                    column=0,
                                    sticky=constants.EW,
-                                   padx=20,
+                                   padx=200,
                                    pady=10
                                    )
 
         show_all_meals_button.grid(row=3,
                                 column=0,
                                 sticky=constants.EW,
-                                padx=20,
+                                padx=200,
                                 pady=10
                                 )
 
         create_item_button.grid(row=5,
                                 column=0,
                                 sticky=constants.EW,
-                                padx=20,
+                                padx=200,
                                 pady=10
                                 )
 
         logout_button.grid(row=6,
                            column=0,
                            sticky=constants.EW,
-                           padx=20,
+                           padx=200,
                            pady=10
                            )
 
