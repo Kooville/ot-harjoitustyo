@@ -6,11 +6,12 @@ from services.diary_service import diary_service
 class MainMenu:
     """ Käyttöliittymä sovelluksen päävalikolle """
 
-    def __init__(self, root, start_view, all_meals_view, create_item_view):
+    def __init__(self, root, start_view, today_view, all_meals_view, create_item_view):
         self._root = root
         self._user = diary_service.get_current_user()
         self._handle_view_todays_entries = None
         self.start_view = start_view
+        self.today_view = today_view
         self.all_meals_view = all_meals_view
         self.create_item_view = create_item_view
         self._style = init_styles()
@@ -38,7 +39,7 @@ class MainMenu:
         todays_entries_button = ttk.Button(
             master=self._frame,
             text="Tämän päivän tiedot",
-            command=self._handle_view_todays_entries
+            command=self.today_view
         )
         show_all_meals_button = ttk.Button(
             master=self._frame,

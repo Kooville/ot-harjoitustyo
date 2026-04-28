@@ -14,6 +14,8 @@ class AllMealsView:
 
         self._show_main_menu = show_main_menu
         self._show_create_meal_view = show_create_meal_view
+        self._meals_list = None
+        self._selected_meal_id = None
 
         self._meals = diary_service.get_all_meals()
         self._initialize()

@@ -1,6 +1,7 @@
 from ui.create_user_view import CreateUserView
 from ui.login_view import LoginView
 from ui.start_view import StartView
+from ui.today_view import TodayView
 from ui.create_item_view import CreateItemView
 from ui.create_meal_view import CreateMealView
 from ui.all_meals_view import AllMealsView
@@ -49,8 +50,18 @@ class UI:
 
         self._current_view = MainMenu(self._root,
                                       self._show_start_view,
+                                      self._show_today_view,
                                       self._show_all_meals_view,
                                       self._show_create_item_view,
+                                      )
+        self._current_view.pack()
+
+    def _show_today_view(self):
+        self._hide_current_view()
+
+        self._current_view = TodayView(self._root,
+                                      self._show_main_menu,
+                                      self._show_create_meal_view
                                       )
         self._current_view.pack()
 

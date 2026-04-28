@@ -23,35 +23,35 @@ class AllMealsList:
         return self._frame
 
     def _initialize(self):
-            self._tree = ttk.Treeview(
-                self._frame,
-                columns=("name", "kcal", "carbs", "protein", "fat"),
-                show="headings"
+        self._tree = ttk.Treeview(
+            self._frame,
+            columns=("name", "kcal", "carbs", "protein", "fat"),
+            show="headings"
+        )
+
+        self._tree.heading("name", text="Nimi")
+        self._tree.heading("kcal", text="Kcal")
+        self._tree.heading("carbs", text="Hiilihydraatit")
+        self._tree.heading("protein", text="Proteiini")
+        self._tree.heading("fat", text="Rasva")
+
+        self._tree.column("name", width=150)
+        self._tree.column("kcal", width=100)
+        self._tree.column("carbs", width=100)
+        self._tree.column("protein", width=100)
+        self._tree.column("fat", width=100)
+
+        self._tree.grid(row=0, column=0, sticky="nsew")
+
+        for meal in self._meals:
+            self._tree.insert(
+                "",
+                "end",
+                iid=str(meal.id),
+                values=(meal.name, meal.calories, meal.carbs, meal.protein, meal.fat)
             )
 
-            self._tree.heading("name", text="Nimi")
-            self._tree.heading("kcal", text="Kcal")
-            self._tree.heading("carbs", text="Hiilihydraatit")
-            self._tree.heading("protein", text="Proteiini")
-            self._tree.heading("fat", text="Rasva")
-
-            self._tree.column("name", width=150)
-            self._tree.column("kcal", width=100)
-            self._tree.column("carbs", width=100)
-            self._tree.column("protein", width=100)
-            self._tree.column("fat", width=100)
-
-            self._tree.grid(row=0, column=0, sticky="nsew")
-
-            for meal in self._meals:
-                self._tree.insert(
-                    "",
-                    "end",
-                    iid=str(meal.id),
-                    values=(meal.name, meal.calories, meal.carbs, meal.protein, meal.fat)
-                )
-
-            self._tree.bind("<<TreeviewSelect>>", self._on_meal_select)
+        self._tree.bind("<<TreeviewSelect>>", self._on_meal_select)
    
     def _on_meal_select(self, event):
         selected_item = self._tree.selection()
