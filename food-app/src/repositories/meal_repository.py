@@ -69,6 +69,21 @@ class MealRepository:
         cursor.execute("select * from meals")
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
+    
+    def get_meal_by_name(self, name):
+        """ Hakee tietokannasta aterian, joka vastaa annettua nimeä
+
+        Args:
+            name: Aterian nimi, jota haetaan
+
+        Returns:
+            Meal-olio, joka vastaa annettua nimeä, tai None jos ateriaa ei löydy
+        """
+
+        cursor = self.connection.cursor()
+        cursor.execute("select * from meals where name = ?", (name,))
+        row = cursor.fetchone()
+        return get_meal_by_row(row)
 
 
 meal_repository = MealRepository(get_database_connection())
