@@ -12,7 +12,7 @@ class AllMealsList:
         self._frame = ttk.Frame(parent, style="TFrame")
         self._frame.grid_rowconfigure(0, weight=1)
         self._frame.grid_columnconfigure(0, weight=1)
-        
+
         self._meals = meals
         self._on_select_callback = on_select
         self._tree = None
@@ -48,11 +48,12 @@ class AllMealsList:
                 "",
                 "end",
                 iid=str(meal.id),
-                values=(meal.name, meal.calories, meal.carbs, meal.protein, meal.fat)
+                values=(meal.name, meal.calories,
+                        meal.carbs, meal.protein, meal.fat)
             )
 
         self._tree.bind("<<TreeviewSelect>>", self._on_meal_select)
-   
+
     def _on_meal_select(self, event):
         selected_item = self._tree.selection()
         if selected_item:
@@ -66,6 +67,6 @@ class AllMealsList:
         if selected_item:
             return selected_item[0]
         return None
-    
+
     def delete_meal(self, meal_id):
         self._tree.delete(meal_id)

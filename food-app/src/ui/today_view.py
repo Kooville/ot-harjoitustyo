@@ -48,7 +48,6 @@ class TodayView:
             return
 
         meal_id = self._selected_meal_id
-        
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,
@@ -92,12 +91,11 @@ class TodayView:
             pady=(100, 50)
         )
 
-
         self._initialize_meals_list()
 
         button_frame = ttk.Frame(self._container, style="TFrame")
         button_frame.grid(row=1, column=2, sticky="n", padx=0, pady=0)
-        
+
         self._choice_button = ttk.Button(
             button_frame,
             text="Valitse ateria",

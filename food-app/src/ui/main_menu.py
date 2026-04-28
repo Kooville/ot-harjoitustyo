@@ -74,11 +74,11 @@ class MainMenu:
                                    )
 
         show_all_meals_button.grid(row=3,
-                                column=0,
-                                sticky=constants.EW,
-                                padx=200,
-                                pady=10
-                                )
+                                   column=0,
+                                   sticky=constants.EW,
+                                   padx=200,
+                                   pady=10
+                                   )
 
         create_item_button.grid(row=5,
                                 column=0,

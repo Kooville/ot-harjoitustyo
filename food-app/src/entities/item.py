@@ -1,6 +1,6 @@
 class Item:
     """ Luokka, joka sisältää yksittäisen ruoka-aineen.
-     
+
       Attributes:
        name: Ruoka-aineen nimi
        calories: Ruoka-aineen kalorimäärä 100 grammassa

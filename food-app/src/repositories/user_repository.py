@@ -20,10 +20,10 @@ class UserRepository:
 
     def create_user(self, user):
         """ Lisää tietokantaan uuden käyttäjän 
-        
+
         Args:
             user: User-olio, joka halutaan lisätä tietokantaan
-        
+
         Returns:
             User-olio, joka on lisätty tietokantaan ja jolle on asetettu id
         """
@@ -37,10 +37,10 @@ class UserRepository:
 
     def get_user_by_username(self, username):
         """ Hakee tietokannasta käyttäjän, joka vastaa annettuja tietoja 
-        
+
         Args:
             username: Käyttäjätunnus, jota haetaan
-            
+
         Returns:
             User-olio, joka vastaa annettuja tietoja, tai None jos käyttäjää ei löydy
         """

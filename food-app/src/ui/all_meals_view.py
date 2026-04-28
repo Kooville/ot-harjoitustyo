@@ -120,7 +120,7 @@ class AllMealsView:
                                 padx=10,
                                 pady=5
                                 )
-        
+
         self._delete_button = ttk.Button(
             button_frame,
             text="Poista ateria",

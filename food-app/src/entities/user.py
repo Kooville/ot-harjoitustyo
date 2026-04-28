@@ -1,6 +1,6 @@
 class User:
     """ Luokka, joka sisältää yksittäisen käyttäjän
-    
+
     Attributes:
         username: Käyttäjätunnus
         password: Salasana
@@ -11,7 +11,7 @@ class User:
 
     def __init__(self, username, password, goal_calories=0, today_calories=0, user_id=None):
         """ Luokan konstruktori, joka luo uuden käyttäjän 
-        
+
         Args:
             username: Käyttäjätunnus
             password: Salasana

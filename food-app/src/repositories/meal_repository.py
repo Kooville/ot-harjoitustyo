@@ -40,10 +40,10 @@ class MealRepository:
         self.connection.commit()
         meal.id = cursor.lastrowid
         return meal
-    
+
     def delete_meal(self, meal_id):
         """ Poistaa aterian tietokannasta 
-        
+
         Args:
             meal_id: Aterian id, joka halutaan poistaa tietokannasta
         """
@@ -54,7 +54,7 @@ class MealRepository:
 
     def get_all_meals(self):
         """ Hakee tietokannasta kaikki ateriat 
-        
+
         Returns:
             Lista kaikista Meal-olioista, jotka löytyvät tietokannasta
         """

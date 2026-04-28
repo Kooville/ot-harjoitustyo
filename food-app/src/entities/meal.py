@@ -12,7 +12,7 @@ class Meal:
 
     def __init__(self, name, calories, carbs, protein, fat, meal_id=None):
         """ Luokan konstruktori, joka luo uuden aterian 
-        
+
         Args:
             name: Aterian nimi
             calories: Aterian kalorimäärä

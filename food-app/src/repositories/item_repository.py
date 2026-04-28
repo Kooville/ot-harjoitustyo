@@ -25,10 +25,10 @@ class ItemRepository:
 
     def create_item(self, item):
         """ Lisää tietokantaan uuden ruoka-aineen
-        
+
         Args:
             item: Item-olio, joka halutaan lisätä tietokantaan
-        
+
         Returns:
             Item-olio, joka on lisätty tietokantaan ja jolle on asetettu id
         """
@@ -43,10 +43,10 @@ class ItemRepository:
 
     def get_item_by_name(self, name):
         """ Hakee tietokannasta ruoka-aineen, joka vastaa annettua nimeä
-        
+
         Args:
             name: Ruoka-aineen nimi, jota haetaan
-            
+
         Returns:
             Item-olio, joka vastaa annettua nimeä, tai None jos ruoka-ainetta ei löydy
         """
@@ -59,7 +59,7 @@ class ItemRepository:
 
     def get_all_items(self):
         """ Hakee tietokannasta kaikki ruoka-aineet 
-        
+
         Returns:
             Lista Item-olioita, jotka löytyvät tietokannasta
         """
@@ -71,7 +71,7 @@ class ItemRepository:
 
     def get_item_by_multiplier(self, item, multiplier):
         """ Palauttaa halutun ruoka-aineen ravintoarvot kerrottuna valitulla määrällä 
-        
+
         Args:
             item: Item-olio, jonka ravintoarvot halutaan hakea
             multiplier: Luku, jolla halutaan kertoa ruoka-aineen ravintoarvot
