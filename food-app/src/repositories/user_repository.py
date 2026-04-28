@@ -10,10 +10,24 @@ class UserRepository:
     """ Luokka, joka sisältää käyttäjiin liittyvät tietokantaoperaatiot """
 
     def __init__(self, connection):
+        """Luokan konstruktori
+
+        Args:
+            connection: Tietokantayhteyden Connection-olio
+        """
+
         self.connection = connection
 
     def create_user(self, user):
-        """ Lisää tietokantaan uuden käyttäjän """
+        """ Lisää tietokantaan uuden käyttäjän 
+        
+        Args:
+            user: User-olio, joka halutaan lisätä tietokantaan
+        
+        Returns:
+            User-olio, joka on lisätty tietokantaan ja jolle on asetettu id
+        """
+
         cursor = self.connection.cursor()
         cursor.execute("insert into users (username, password, goal_calories, today_calories) values (?, ?, ?, ?)",
                        (user.username, user.password, user.goal_calories, user.today_calories))
@@ -22,7 +36,15 @@ class UserRepository:
         return user
 
     def get_user_by_username(self, username):
-        """ Hakee tietokannasta käyttäjän, joka vastaa annettuja tietoja """
+        """ Hakee tietokannasta käyttäjän, joka vastaa annettuja tietoja 
+        
+        Args:
+            username: Käyttäjätunnus, jota haetaan
+            
+        Returns:
+            User-olio, joka vastaa annettuja tietoja, tai None jos käyttäjää ei löydy
+        """
+
         cursor = self.connection.cursor()
         cursor.execute("select * from users where username = ?",
                        (username,))

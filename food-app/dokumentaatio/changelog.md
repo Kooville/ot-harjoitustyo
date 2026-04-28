@@ -21,3 +21,11 @@
 - Sovelluksessa on sivu lisätyille aterioille
 - Lisätyt ateriat sivulta pääsee lisäämään uusia aterioita
 - Ateriat tallentuvat tietokantaan omaan tauluunsa
+
+
+## Viikko 6
+
+- Aterioiden listaus on toteutettu listana josta pystyy valita, lisätä ja poistaa aterioita
+- Koodin refaktorointia muun muassa muutettu olioiden tallennusta ja hakemista
+- Nykyinen päivä sivulle lisätty lista josta valitaan ateriat, mutta se ei vielä toimi
+
