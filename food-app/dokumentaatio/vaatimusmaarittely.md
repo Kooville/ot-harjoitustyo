@@ -27,7 +27,7 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
   - [x] Nykyiseen päivään
 
-    - [ ] Sovellus näyttää kyseiselle päivälle kirjatut ateriat
+    - [x] Sovellus näyttää kyseiselle päivälle kirjatut ateriat
 
     - [x] Mahdollisuus valita aterioita jo luoduista aterioista
 
