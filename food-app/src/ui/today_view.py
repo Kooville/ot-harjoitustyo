@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, Listbox
 from services.diary_service import diary_service
 from ui.components.all_meals_list import AllMealsList
 from ui.style import init_styles
@@ -18,6 +18,9 @@ class TodayView:
         self._meals_list = None
         self._selected_meal_id = None
 
+        self._chosen_meals = diary_service.get_todays_meals(self._date)
+        self._chosen_meals_listbox = None
+
         self._meals = diary_service.get_all_meals()
         self._initialize()
 
@@ -33,7 +36,7 @@ class TodayView:
             self._meals,
             self._on_meal_select
         )
-        self._meals_list.get_frame().grid(row=1, column=1, sticky="nsew")
+        self._meals_list.get_frame().grid(row=0, column=2, sticky="nsew", padx=(100, 0))
 
     def _on_meal_select(self, meal_id):
         self._selected_meal_id = meal_id
@@ -49,6 +52,21 @@ class TodayView:
 
         meal_id = self._selected_meal_id
 
+        meal = next(
+            (meal for meal in self._meals if str(meal.id) == str(meal_id)),
+            None
+        )
+        if meal:
+            diary_service.add_meal_to_diary(meal.id, self._date)
+            self._chosen_meals.append(meal)
+            self._list_chosen_meals()
+
+    def _list_chosen_meals(self):
+        self._chosen_meals_listbox.delete(0, "end")
+
+        for meal in self._chosen_meals:
+            self._chosen_meals_listbox.insert("end", meal.name)
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,
                                 style="TFrame"
@@ -59,7 +77,8 @@ class TodayView:
         self._frame.grid_rowconfigure(2, weight=0)
         self._frame.grid_rowconfigure(3, weight=0)
         self._frame.grid_rowconfigure(4, weight=1)
-        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_columnconfigure(0, weight=0)
+        self._frame.grid_columnconfigure(1, weight=1)
 
         back_button = ttk.Button(
             master=self._frame,
@@ -77,24 +96,25 @@ class TodayView:
         )
 
         self._container = ttk.Frame(self._frame, style="TFrame")
-        self._container.grid(row=2, column=0, sticky="nsew")
+        self._container.grid(row=2, column=0, columnspan=2, sticky="nsew")
 
         title_label = ttk.Label(
-            master=self._container,
+            master=self._frame,
             text=f"Tänään {self._date}",
-            style="TLabel"
+            style="Title.TLabel"
         )
 
         title_label.grid(
-            row=0,
+            row=1,
             column=0,
-            pady=(100, 50)
+            columnspan=2,
+            pady=(50, 50)
         )
 
         self._initialize_meals_list()
 
         button_frame = ttk.Frame(self._container, style="TFrame")
-        button_frame.grid(row=1, column=2, sticky="n", padx=0, pady=0)
+        button_frame.grid(row=0, column=3, sticky="n", padx=0, pady=0)
 
         self._choice_button = ttk.Button(
             button_frame,
@@ -111,3 +131,16 @@ class TodayView:
             padx=10,
             pady=5
         )
+
+        self._chosen_meals_listbox = Listbox(
+            self._container,
+            width=40,
+            height=15
+        )
+        self._chosen_meals_listbox.grid(
+            row=0,
+            column=1,
+            sticky="n",
+            padx=10,
+        )
+        self._list_chosen_meals()

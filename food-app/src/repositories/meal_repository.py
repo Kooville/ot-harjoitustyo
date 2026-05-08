@@ -70,20 +70,52 @@ class MealRepository:
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
     
-    def get_meal_by_name(self, name):
-        """ Hakee tietokannasta aterian, joka vastaa annettua nimeä
+    def get_meal_by_id(self, id):
+        """ Hakee tietokannasta aterian, joka vastaa annettua id:tä
 
         Args:
-            name: Aterian nimi, jota haetaan
+            id: Aterian id, jota haetaan
 
         Returns:
-            Meal-olio, joka vastaa annettua nimeä, tai None jos ateriaa ei löydy
+            Meal-olio, joka vastaa annettua id:tä, tai None jos ateriaa ei löydy
         """
 
         cursor = self.connection.cursor()
-        cursor.execute("select * from meals where name = ?", (name,))
+        cursor.execute("select * from meals where id = ?", (id,))
         row = cursor.fetchone()
         return get_meal_by_row(row)
 
+    def add_meal_to_diary(self, meal_id, user_id, date):
+        """ Lisää aterian päiväkirjaan tietokantaan 
+
+        Args:
+            meal_id: Aterian id, joka halutaan lisätä päiväkirjaan
+            user_id: Käyttäjän id, jolle ateria halutaan lisätä
+            date: Päivämäärä, johon ateria halutaan lisätä (muodossa "YYYY-MM-DD")
+        """
+
+        cursor = self.connection.cursor()
+        cursor.execute("insert into today_meals (date, user_id, meal_id) values (?, ?, ?)", (date, user_id, meal_id))
+        self.connection.commit()
+
+    def get_todays_meals(self, user_id, date):
+        """ Hakee kaikki ateriat, jotka on lisätty päiväkirjaan tiettynä päivänä 
+
+        Args:
+            user_id: Käyttäjän id, jonka ateriat halutaan hakea
+            date: Päivämäärä, jonka ateriat halutaan hakea (muodossa "YYYY-MM-DD")
+
+        Returns:
+            Lista Meal-olioista, jotka on lisätty päiväkirjaan annettuna päivänä
+        """
+
+        cursor = self.connection.cursor()
+        cursor.execute("""
+            select meals.* from meals
+            join today_meals on meals.id = today_meals.meal_id
+            where today_meals.user_id = ? and today_meals.date = ?
+        """, (user_id, date))
+        rows = cursor.fetchall()
+        return [get_meal_by_row(row) for row in rows]
 
 meal_repository = MealRepository(get_database_connection())

@@ -25,7 +25,8 @@ class StartView:
 
         label = ttk.Label(master=self._frame,
                           text="Tervetuloa käyttämään ruokapäiväkirjaa!",
-                          anchor="center"
+                          anchor="center",
+                          style="Title.TLabel"
                           )
         create_user_button = ttk.Button(
             master=self._frame,
@@ -40,20 +41,20 @@ class StartView:
         self._frame.grid_rowconfigure(0, weight=1)
         self._frame.grid_rowconfigure(4, weight=1)
 
-        label.grid(row=1,
+        label.grid(row=0,
                    column=0,
                    sticky=constants.EW,
                    padx=20,
                    pady=10
                    )
 
-        create_user_button.grid(row=2,
+        create_user_button.grid(row=1,
                                 column=0,
                                 sticky=constants.EW,
                                 padx=200,
                                 pady=10
                                 )
-        login_button.grid(row=3,
+        login_button.grid(row=2,
                           column=0,
                           sticky=constants.EW,
                           padx=200,

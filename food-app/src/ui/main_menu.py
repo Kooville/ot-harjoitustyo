@@ -34,6 +34,7 @@ class MainMenu:
 
         label = ttk.Label(master=self._frame,
                           text=f"Tervetuloa käyttämään ruokapäiväkirjaa {self._user.username}!",
+                          style="Title.TLabel",
                           anchor="center"
                           )
         todays_entries_button = ttk.Button(
@@ -59,7 +60,7 @@ class MainMenu:
         self._frame.grid_rowconfigure(0, weight=1)
         self._frame.grid_rowconfigure(7, weight=1)
 
-        label.grid(row=1,
+        label.grid(row=0,
                    column=0,
                    sticky=constants.EW,
                    padx=20,

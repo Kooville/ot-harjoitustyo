@@ -23,3 +23,12 @@ CREATE TABLE meals (
     protein INTEGER,
     fat INTEGER
     );
+
+CREATE TABLE today_meals (
+    id INTEGER PRIMARY KEY,
+    date TEXT,
+    user_id INTEGER,
+    meal_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (meal_id) REFERENCES meals(id)
+);

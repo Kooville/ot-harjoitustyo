@@ -155,5 +155,38 @@ class DiaryService:
 
         return self._meal_repository.get_all_meals()
 
+    def get_meal_by_id(self, meal_id):
+        """ Palauttaa aterian id:n perusteella 
+
+        Args:
+            meal_id: Aterian id, joka halutaan hakea tietokannasta
+
+        Returns:
+            Meal-olio, joka vastaa annettua id:tä, tai None jos sellaista ei löydy
+        """
+
+        return self._meal_repository.get_meal_by_id(meal_id)
+
+    def add_meal_to_diary(self, meal_id, date):
+        """ Lisää aterian päiväkirjaan 
+
+        Args:
+            meal_id: Aterian id, joka halutaan lisätä päiväkirjaan
+            date: Päivämäärä, johon ateria halutaan lisätä
+        """
+
+        self._meal_repository.add_meal_to_diary(meal_id, self._user.id, date)
+
+    def get_todays_meals(self, date):
+        """ Hakee kaikki ateriat, jotka on lisätty päiväkirjaan tiettynä päivänä 
+
+        Args:
+            date: Päivämäärä, jonka ateriat halutaan hakea
+
+        Returns:
+            Lista Meal-olioista, jotka on lisätty päiväkirjaan annettuna päivänä
+        """
+
+        return self._meal_repository.get_todays_meals(self._user.id, date)
 
 diary_service = DiaryService()
