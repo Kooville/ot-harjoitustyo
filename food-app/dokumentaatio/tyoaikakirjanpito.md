@@ -8,4 +8,5 @@
 |14.4.|5h    |Päävalikko, kirjautumissivu, ruoka-aineen lisäys|
 |21.4.|4h    |Aterian lisäys, tietokantaoperaatiot, aterioiden  listaus omalle sivulle|
 |28.4.|5h    |Tkinterin ominaisuuksien tutkimista, Aika paljon refaktorointia, Aterialistauksen muutoksia, Nykyisen päivän sivun suunnittelua ja luomisen aloittaminen|
-|yht.|24h  ||
+|8.5.|4h     |Today sivulle lisätty listaus valituista aterioista ja tietokantaoperaatiot sekä pieniä muutoksia ui:hin|
+|yht.|28h  ||
