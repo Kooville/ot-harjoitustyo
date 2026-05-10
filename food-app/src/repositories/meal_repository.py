@@ -70,18 +70,18 @@ class MealRepository:
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
 
-    def get_meal_by_id(self, id):
+    def get_meal_by_id(self, meal_id):
         """ Hakee tietokannasta aterian, joka vastaa annettua id:tä
 
         Args:
-            id: Aterian id, jota haetaan
+            meal_id: Aterian id, jota haetaan
 
         Returns:
             Meal-olio, joka vastaa annettua id:tä, tai None jos ateriaa ei löydy
         """
 
         cursor = self.connection.cursor()
-        cursor.execute("select * from meals where id = ?", (id,))
+        cursor.execute("select * from meals where id = ?", (meal_id,))
         row = cursor.fetchone()
         return get_meal_by_row(row)
 
@@ -140,6 +140,5 @@ class MealRepository:
                )
             """, (meal_id, user_id, date))
         self.connection.commit()
-
 
 meal_repository = MealRepository(get_database_connection())

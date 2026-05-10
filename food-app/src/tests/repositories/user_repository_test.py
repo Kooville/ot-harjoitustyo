@@ -21,3 +21,10 @@ class TestUser(unittest.TestCase):
         retrieved_user = user_repository.get_user_by_username("pekka")
         self.assertEqual(retrieved_user.username, "pekka")
         self.assertEqual(retrieved_user.password, "salasana")
+
+    def test_update_user_info(self):
+        user = user_repository.create_user(User("matti", "salasana"))
+        user_repository.update_user_info(user.id, "matti123", "2500")
+        updated_user = user_repository.get_user_by_username("matti123")
+        self.assertEqual(updated_user.username, "matti123")
+        self.assertEqual(updated_user.goal_calories, 2500)

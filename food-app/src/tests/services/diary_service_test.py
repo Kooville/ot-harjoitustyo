@@ -59,3 +59,26 @@ class TestDiaryService(unittest.TestCase):
         user = self.diary_service.create_user("ville", "salasana", "salasana")
         self.assertEqual(user.username, "ville")
         self.assertEqual(user.password, "salasana")
+
+    def test_create_user_password_mismatch(self):
+        with self.assertRaises(ValueError):
+            self.diary_service.create_user("ville", "salasana", "eri_salasana")
+    
+    def test_create_user_username_taken(self):
+        self.diary_service.create_user("ville", "salasana", "salasana")
+        with self.assertRaises(ValueError):
+            self.diary_service.create_user("ville", "salasana2", "salasana2")
+    
+    def test_login(self):
+        self.diary_service.create_user("ville", "salasana", "salasana")
+        user = self.diary_service.login("ville", "salasana")
+        self.assertEqual(user.username, "ville")
+        self.assertEqual(user.password, "salasana")
+
+    def test_login_invalid_credentials(self):
+        self.diary_service.create_user("ville", "salasana", "salasana")
+        with self.assertRaises(ValueError):
+            self.diary_service.login("ville", "eri_salasana")
+        with self.assertRaises(ValueError):
+            self.diary_service.login("eri_kayttaja", "salasana")
+    

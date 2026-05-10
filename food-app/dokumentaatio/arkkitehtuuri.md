@@ -109,7 +109,7 @@ sequenceDiagram
   UI->>UI: show_all_meals_view()
 ```
 
-Käyttöliittymä kutsuu DiaryService luokan create_meal metodia parametreinä aterian nimi sekä lista tupleja, jotka koostuvat ruoka-aineen nimestä ja aterian sisältämästä määrästä. DiaryService kutsuu ItemRepositorya jokaisen ruoka-aineen kohdalla ja palautuksena tulee Item olio, jolla on ruoka-aineen makrot skaalattuna haluttuun määrään. Sitten DiaryService luo Meal olion parametreinään aterian nimi sekä makroravinteet. Diaryservice kutsuu MealRepositoryn create_meal metodia parametrinä Meal olio. Lopulta UI palauttaa näkymän kaikkien lisättyjen aterioiden listaukseen.
+Käyttöliittymä kutsuu DiaryService luokan create_meal metodia parametreinä aterian nimi sekä lista tupleja, jotka koostuvat ruoka-aineen item oliosta ja aterian sisältämästä määrästä. DiaryService kutsuu ItemRepositorya jokaisen ruoka-aineen kohdalla ja palautuksena tulee Item olio, jolla on ruoka-aineen makrot skaalattuna haluttuun määrään. Sitten DiaryService luo Meal olion parametreinään aterian nimi sekä makroravinteet. Diaryservice kutsuu MealRepositoryn create_meal metodia parametrinä Meal olio. Lopulta UI palauttaa näkymän kaikkien lisättyjen aterioiden listaukseen.
 
 
 ## Rakenteen heikkoudet
