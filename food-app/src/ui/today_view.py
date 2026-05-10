@@ -1,6 +1,8 @@
+import tkinter as tk
 from tkinter import ttk, constants, Listbox
 from services.diary_service import diary_service
 from ui.components.all_meals_list import AllMealsList
+from ui.components.nutrition_bar import NutritionBar
 from ui.style import init_styles
 from datetime import datetime
 
@@ -12,14 +14,20 @@ class TodayView:
         self._root = root
         self._frame = None
         self._style = init_styles()
+        self._user = diary_service.get_current_user()
         self._date = datetime.now().strftime("%d.%m.%Y")
-
+        self._nutrients = diary_service.get_todays_nutrients(self._date)
+       
         self._show_main_menu = show_main_menu
         self._meals_list = None
         self._selected_meal_id = None
 
         self._chosen_meals = diary_service.get_todays_meals(self._date)
         self._chosen_meals_listbox = None
+        self._progress_bar = None
+        self._progress_label = None
+        self._nutrition_bar = None
+
 
         self._meals = diary_service.get_all_meals()
         self._initialize()
@@ -46,10 +54,6 @@ class TodayView:
         self._selected_meal_id = meal_id
         self._choice_button.config(state="normal")
 
-    def _clear_selection(self):
-        self._selected_meal_id = None
-        self._choice_button.config(state="disabled")
-
     def _choose_selected_meal(self):
         if not self._selected_meal_id:
             return
@@ -64,6 +68,7 @@ class TodayView:
             diary_service.add_meal_to_diary(meal.id, self._date)
             self._chosen_meals.append(meal)
             self._list_chosen_meals()
+            self._refresh_data()
 
     def _list_chosen_meals(self):
         self._chosen_meals_listbox.delete(0, "end")
@@ -82,6 +87,7 @@ class TodayView:
         diary_service.delete_meal_from_diary(meal_to_remove.id, self._date)
         self._chosen_meals.pop(index)
         self._list_chosen_meals()
+        self._refresh_data()
         self._delete_button.config(state="disabled")
 
     def _on_chosen_meal_select(self, event):
@@ -90,6 +96,55 @@ class TodayView:
             self._delete_button.config(state="normal")
         else:
             self._delete_button.config(state="disabled")
+
+    def _initialize_progress_bar(self):
+        self._progress_bar = ttk.Progressbar(
+            self._frame,
+            mode="determinate",
+            maximum=self._user.goal_calories,
+            value=self._nutrients['calories']
+        )
+        self._progress_bar.grid(
+            row=4,
+            column=0,
+            columnspan=2,
+            sticky="ew",
+            padx=10,
+            pady=10
+        )
+        self._progress_label = ttk.Label(
+            master=self._frame,
+            text=f"Kalorit: {self._nutrients['calories']}/{self._user.goal_calories}",
+            style="TLabel"
+        )
+        self._progress_label.grid(
+            row=3,
+            column=0,
+            columnspan=2,
+            sticky="ew",
+            padx=10,
+            pady=10
+        )
+    
+    def _update_progress_bar(self):
+        self._progress_bar["value"] = self._nutrients['calories']
+        self._progress_bar["maximum"] = self._user.goal_calories
+        self._progress_label.config(
+            text=f"Kalorit: {self._nutrients['calories']}/{self._user.goal_calories}"
+        )
+
+    def _update_nutrition_bar(self):
+        self._nutrition_bar.update_data(
+            protein=self._nutrients["protein"],
+            carbs=self._nutrients["carbs"],
+            fat=self._nutrients["fat"]
+        )
+
+    def _refresh_data(self):
+        self._user = diary_service.get_current_user()
+        self._nutrients = diary_service.get_todays_nutrients(self._date)
+        self._update_progress_bar()
+        self._update_nutrition_bar()
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,
@@ -128,6 +183,7 @@ class TodayView:
         self._container.grid_columnconfigure(0, weight=1)
         self._container.grid_columnconfigure(1, weight=1)
         self._container.grid_columnconfigure(2, weight=1)
+        self._container.grid_columnconfigure(3, weight=0)
 
         title_label = ttk.Label(
             master=self._frame,
@@ -143,6 +199,16 @@ class TodayView:
         )
 
         self._initialize_meals_list()
+        self._initialize_progress_bar()
+        self._nutrition_bar = NutritionBar(self._frame)
+        self._nutrition_bar.grid(
+            row=5,
+            column=0,
+            columnspan=2,
+            sticky="ew",
+            padx=10,
+            pady=10
+        )
 
         button_frame = ttk.Frame(self._container, style="TFrame")
         button_frame.grid(row=0, column=3, sticky="n", padx=0, pady=0)
@@ -195,4 +261,7 @@ class TodayView:
             pady=5
         )
 
+
         self._list_chosen_meals()
+        self._update_progress_bar()
+        self._update_nutrition_bar()

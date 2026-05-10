@@ -2,8 +2,7 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     username TEXT,
     password TEXT,
-    goal_calories INTEGER,
-    today_calories INTEGER
+    goal_calories INTEGER
 );
 
 CREATE TABLE items (

@@ -196,11 +196,8 @@ class DiaryService:
         meal = self._meal_repository.get_meal_by_id(meal_id)
         if not meal:
             raise ValueError("Ateriaa ei löydy")
-        calories = self._user.today_calories + meal.calories
 
         self._meal_repository.add_meal_to_diary(meal_id, self._user.id, date)
-        self._user_repository.update_today_calories(self._user.id, calories)
-        self._user.today_calories = calories
 
     def get_todays_meals(self, date):
         """ Hakee kaikki ateriat, jotka on lisätty päiväkirjaan tiettynä päivänä 
@@ -224,12 +221,34 @@ class DiaryService:
         meal = self._meal_repository.get_meal_by_id(meal_id)
         if not meal:
             raise ValueError("Ateriaa ei löydy")
-        calories = self._user.today_calories - meal.calories
 
         self._meal_repository.delete_meal_from_diary(
             meal_id, self._user.id, date)
-        self._user_repository.update_today_calories(self._user.id, calories)
-        self._user.today_calories = calories
+
+    def get_todays_nutrients(self, date):
+        """ Hakee tämän päivän ravintoaineet 
+
+        Args:
+            date: Päivämäärä, jonka ravintoaineet halutaan hakea
+
+        Returns:
+            Sanakirja, jossa on tämän päivän ravintoaineet
+        """
+
+        meals = self.get_todays_meals(date)
+        calories = sum(meal.calories for meal in meals)
+        carbs = sum(meal.carbs for meal in meals)
+        protein = sum(meal.protein for meal in meals)
+        fat = sum(meal.fat for meal in meals)
+
+        nutrients = {
+            "calories": calories,
+            "carbs": carbs,
+            "protein": protein,
+            "fat": fat
+        }
+
+        return nutrients
 
 
 diary_service = DiaryService()
