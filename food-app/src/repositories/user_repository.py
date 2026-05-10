@@ -63,5 +63,33 @@ class UserRepository:
         row = cursor.fetchone()
         return get_user_by_row(row)
 
+    def update_today_calories(self, user_id, calories):
+        """ Päivittää käyttäjän tämän päivän kalorimäärät tietokantaan
+
+        Args:
+            user_id: Käyttäjän id, jonka kalorimäärä halutaan päivittää
+            calories: Uusi kalorimäärä, joka asetetaan käyttäjälle
+        """
+
+        cursor = self.connection.cursor()
+        cursor.execute("update users set today_calories = ? where id = ?",
+                       (calories, user_id))
+        self.connection.commit()
+
+    def update_user_info(self, user_id, new_username, new_goal_calories):
+        """ Päivittää käyttäjätiedot tietokantaan
+
+        Args:
+            user_id: Käyttäjän id, jonka tietoja halutaan päivittää
+            new_username: Uusi käyttäjätunnus, joka asetetaan käyttäjälle
+            new_goal_calories: Uusi tavoitekalorimäärä, joka asetetaan käyttäjälle
+        """
+
+        cursor = self.connection.cursor()
+        cursor.execute(
+            "update users set username = ?, goal_calories = ? where id = ?",
+            (new_username, new_goal_calories, user_id)
+        )
+        self.connection.commit()
 
 user_repository = UserRepository(get_database_connection())

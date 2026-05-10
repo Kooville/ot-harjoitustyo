@@ -51,4 +51,10 @@ def init_styles():
                     font=("Arial", 12)
                     )
 
+    style.configure("Error.TLabel",
+                    background="#7fddff",
+                    foreground="red",
+                    font=("Arial", 12)
+                    )
+
     return style

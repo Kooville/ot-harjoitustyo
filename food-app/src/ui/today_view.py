@@ -36,7 +36,11 @@ class TodayView:
             self._meals,
             self._on_meal_select
         )
-        self._meals_list.get_frame().grid(row=0, column=2, sticky="nsew", padx=(100, 0))
+        self._meals_list.get_frame().grid(row=0,
+                                          column=2,
+                                          sticky="ne",
+                                          padx=(100, 0)
+                                          )
 
     def _on_meal_select(self, meal_id):
         self._selected_meal_id = meal_id
@@ -94,9 +98,7 @@ class TodayView:
 
         self._frame.grid_rowconfigure(0, weight=0)
         self._frame.grid_rowconfigure(1, weight=0)
-        self._frame.grid_rowconfigure(2, weight=0)
-        self._frame.grid_rowconfigure(3, weight=0)
-        self._frame.grid_rowconfigure(4, weight=1)
+        self._frame.grid_rowconfigure(2, weight=1)
         self._frame.grid_columnconfigure(0, weight=0)
         self._frame.grid_columnconfigure(1, weight=1)
 
@@ -116,7 +118,16 @@ class TodayView:
         )
 
         self._container = ttk.Frame(self._frame, style="TFrame")
-        self._container.grid(row=2, column=0, columnspan=2, sticky="nsew")
+        self._container.grid(row=2,
+                             column=0,
+                             columnspan=2,
+                             sticky="nsew"
+                             )
+
+        self._container.grid_rowconfigure(0, weight=1)
+        self._container.grid_columnconfigure(0, weight=1)
+        self._container.grid_columnconfigure(1, weight=1)
+        self._container.grid_columnconfigure(2, weight=1)
 
         title_label = ttk.Label(
             master=self._frame,
@@ -148,7 +159,7 @@ class TodayView:
             column=0,
             columnspan=1,
             sticky=constants.NW,
-            padx=10,
+            padx=(10, 50),
             pady=5
         )
 
@@ -160,8 +171,8 @@ class TodayView:
         self._chosen_meals_listbox.grid(
             row=0,
             column=1,
-            sticky="n",
-            padx=10,
+            sticky="ne",
+            padx=(50, 0),
         )
         self._chosen_meals_listbox.bind(
             "<<ListboxSelect>>",
@@ -180,7 +191,7 @@ class TodayView:
             column=0,
             columnspan=1,
             sticky=constants.NW,
-            padx=10,
+            padx=(10, 50),
             pady=5
         )
 

@@ -82,6 +82,23 @@ class DiaryService:
             User-olio, joka on tällä hetkellä kirjautuneena sisään, tai None
         """
         return self._user
+    
+    def update_user_info(self, new_username, new_goal_calories):
+        """ Päivittää käyttäjätiedot
+
+        Args:
+            new_username: Uusi käyttäjätunnus
+            new_goal_calories: Uusi tavoitekalorimäärä
+        """
+        if not self._user or not new_username or not new_goal_calories:
+            raise ValueError("Kaikki kentät on täytettävä")
+        if not new_goal_calories.isdigit() or int(new_goal_calories) <= 0:
+            raise ValueError("Tavoitekalorimäärän on oltava positiivinen kokonaisluku")
+
+        if self._user:
+            self._user.username = new_username
+            self._user.goal_calories = new_goal_calories
+            self._user_repository.update_user_info(self._user.id, new_username, new_goal_calories)
 
     def logout(self):
         """ Kirjaa käyttäjän ulos """
@@ -174,8 +191,14 @@ class DiaryService:
             meal_id: Aterian id, joka halutaan lisätä päiväkirjaan
             date: Päivämäärä, johon ateria halutaan lisätä
         """
+        meal = self._meal_repository.get_meal_by_id(meal_id)
+        if not meal:
+            raise ValueError("Ateriaa ei löydy")
+        calories = self._user.today_calories + meal.calories
 
         self._meal_repository.add_meal_to_diary(meal_id, self._user.id, date)
+        self._user_repository.update_today_calories(self._user.id, calories)
+        self._user.today_calories = calories
 
     def get_todays_meals(self, date):
         """ Hakee kaikki ateriat, jotka on lisätty päiväkirjaan tiettynä päivänä 
@@ -196,7 +219,15 @@ class DiaryService:
             meal_id: Aterian id, joka halutaan poistaa päiväkirjasta
             date: Päivämäärä, jolta ateria halutaan poistaa
         """
+        meal = self._meal_repository.get_meal_by_id(meal_id)
+        if not meal:
+            raise ValueError("Ateriaa ei löydy")
+        calories = self._user.today_calories - meal.calories
+
 
         self._meal_repository.delete_meal_from_diary(meal_id, self._user.id, date)
+        self._user_repository.update_today_calories(self._user.id, calories)
+        self._user.today_calories = calories
+
 
 diary_service = DiaryService()

@@ -15,8 +15,6 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
   - [ ] Tarkastus että salasana on riittävä ja käyttäjätunnus ei käytössä
 
-  - [ ] Käyttäjä voi asettaa tavoitteen itsellensä sekä mahdollisesti muita tietoja
-
 - [x] Käyttäjä voi kirjautua sovellukseen olemassa olevalla tunnuksella
 
   - [x] Tarkastus että salasana vastaa tunnukseen
@@ -35,8 +33,11 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
     - [ ] Painike jolla siirrytään seuraavaan päivään, jolloin päivän tiedot tallentuvat pidemmän ajan koosteeseen
 
-  - [ ] Käyttäjän tietoihin
-    - [ ] Asetettu tavoite
+  - [x] Käyttäjän tietoihin
+
+    - [x] Asetettu tavoite
+
+    - [x] Käyttäjä voi asettaa tavoitteen itsellensä sekä mahdollisesti muita tietoja
 
   - [ ] Koosteeseen aiempien päivien tiedoista
 
