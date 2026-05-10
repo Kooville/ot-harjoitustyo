@@ -67,6 +67,26 @@ class TodayView:
         for meal in self._chosen_meals:
             self._chosen_meals_listbox.insert("end", meal.name)
 
+    def _remove_selected_meal(self):
+        selected_index = self._chosen_meals_listbox.curselection()
+        if not selected_index:
+            return
+
+        index = selected_index[0]
+        meal_to_remove = self._chosen_meals[index]
+
+        diary_service.delete_meal_from_diary(meal_to_remove.id, self._date)
+        self._chosen_meals.pop(index)
+        self._list_chosen_meals()
+        self._delete_button.config(state="disabled")
+
+    def _on_chosen_meal_select(self, event):
+        selected = self._chosen_meals_listbox.curselection()
+        if selected:
+            self._delete_button.config(state="normal")
+        else:
+            self._delete_button.config(state="disabled")
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root,
                                 style="TFrame"
@@ -143,4 +163,25 @@ class TodayView:
             sticky="n",
             padx=10,
         )
+        self._chosen_meals_listbox.bind(
+            "<<ListboxSelect>>",
+            self._on_chosen_meal_select
+        )
+
+        self._delete_button = ttk.Button(
+            button_frame,
+            text="Poista valinta",
+            style="Card.TButton",
+            command=self._remove_selected_meal,
+            state="disabled"
+        )
+        self._delete_button.grid(
+            row=1,
+            column=0,
+            columnspan=1,
+            sticky=constants.NW,
+            padx=10,
+            pady=5
+        )
+
         self._list_chosen_meals()

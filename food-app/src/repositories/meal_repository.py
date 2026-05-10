@@ -117,5 +117,27 @@ class MealRepository:
         """, (user_id, date))
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
+    
+    def delete_meal_from_diary(self, meal_id, user_id, date):
+        """ Aterian poistaminen päiväkirjasta tietokannasta,
+            siten että vain yksi ateria poistetaan
+
+        Args:
+            meal_id: Aterian id, joka halutaan poistaa päiväkirjasta
+            user_id: Käyttäjän id, jolta ateria halutaan poistaa
+            date: Päivämäärä, jolta ateria halutaan poistaa
+        """
+
+        cursor = self.connection.cursor()
+        cursor.execute("""
+                DELETE FROM today_meals
+                WHERE rowid IN (
+                    SELECT rowid 
+                    FROM today_meals
+                    WHERE meal_id = ? AND user_id = ? AND date = ?
+                    LIMIT 1
+               )
+            """, (meal_id, user_id, date))
+        self.connection.commit()
 
 meal_repository = MealRepository(get_database_connection())

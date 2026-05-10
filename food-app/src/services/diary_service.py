@@ -189,4 +189,14 @@ class DiaryService:
 
         return self._meal_repository.get_todays_meals(self._user.id, date)
 
+    def delete_meal_from_diary(self, meal_id, date):
+        """ Poistaa aterian päiväkirjasta 
+
+        Args:
+            meal_id: Aterian id, joka halutaan poistaa päiväkirjasta
+            date: Päivämäärä, jolta ateria halutaan poistaa
+        """
+
+        self._meal_repository.delete_meal_from_diary(meal_id, self._user.id, date)
+
 diary_service = DiaryService()
