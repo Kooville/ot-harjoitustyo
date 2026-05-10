@@ -121,6 +121,23 @@ class DiaryService:
             Item-olio, joka on luotu ja lisätty tietokantaan
         """
 
+        if not name or not calories or not carbs or not protein or not fat:
+            raise ValueError(
+                "Kaikki kentät on täytettävä")
+        if not calories.isdigit() or int(calories) <= 0:
+            raise ValueError(
+                "Kalorimäärän on oltava positiivinen kokonaisluku")
+        if not carbs.isdigit() or int(carbs) < 0:
+            raise ValueError(
+                "Hiilihydraattimäärän on oltava positiivinen kokonaisluku")
+        if not protein.isdigit() or int(protein) < 0:
+            raise ValueError(
+                "Proteiinimäärän on oltava positiivinen kokonaisluku")
+        if not fat.isdigit() or int(fat) < 0:
+            raise ValueError(
+                "Rasvamäärän on oltava positiivinen kokonaisluku")
+        
+
         return self._item_repository.create_item(Item(name, calories, carbs, protein, fat))
 
     def get_all_items(self):
@@ -146,6 +163,11 @@ class DiaryService:
 
         items = []
         for item in selected_items:
+            if not item[0] or not item[1]:
+                raise ValueError("Kaikki kentät on täytettävä")
+            if not item[1].isdigit() or int(item[1]) <= 0:
+                raise ValueError(
+                    "Määrän on oltava positiivinen kokonaisluku")
             multiplied_item = self._item_repository.get_item_by_multiplier(
                 item[0], item[1])
             items.append(multiplied_item)
