@@ -62,8 +62,7 @@ class UI:
         self._hide_current_view()
 
         self._current_view = TodayView(self._root,
-                                       self._show_main_menu,
-                                       self._show_create_meal_view
+                                       self._show_main_menu
                                        )
         self._current_view.pack()
 

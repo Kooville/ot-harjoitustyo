@@ -8,7 +8,7 @@ from datetime import datetime
 class TodayView:
     """ Käyttöliittymä nykyisen päivän näkymälle """
 
-    def __init__(self, root, show_main_menu, show_create_meal_view):
+    def __init__(self, root, show_main_menu):
         self._root = root
         self._frame = None
         self._style = init_styles()
