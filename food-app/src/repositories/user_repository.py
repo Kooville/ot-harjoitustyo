@@ -37,11 +37,10 @@ class UserRepository:
             """insert into users (
                 username,
                 password,
-                goal_calories,
-                today_calories
-            ) values (?, ?, ?, ?)
+                goal_calories
+            ) values (?, ?, ?)
             """,
-            (user.username, user.password, user.goal_calories, user.today_calories))
+            (user.username, user.password, user.goal_calories))
         self.connection.commit()
         user.id = cursor.lastrowid
         return user

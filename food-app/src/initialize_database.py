@@ -9,6 +9,7 @@ def drop_tables(connection):
                    drop table if exists users;
                    drop table if exists items;
                    drop table if exists meals;
+                   drop table if exists today_meals;
                    ''')
     connection.commit()
 
