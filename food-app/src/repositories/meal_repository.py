@@ -96,7 +96,9 @@ class MealRepository:
 
         cursor = self.connection.cursor()
         cursor.execute(
-            "insert into today_meals (date, user_id, meal_id) values (?, ?, ?)", (date, user_id, meal_id))
+            """insert into today_meals (date, user_id, meal_id)
+            values (?, ?, ?)""",
+            (date, user_id, meal_id))
         self.connection.commit()
 
     def get_todays_meals(self, user_id, date):

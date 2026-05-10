@@ -139,7 +139,6 @@ class DiaryService:
         if not fat.isdigit() or int(fat) < 0:
             raise ValueError(
                 "Rasvamäärän on oltava positiivinen kokonaisluku")
-        
 
         return self._item_repository.create_item(Item(name, calories, carbs, protein, fat))
 
