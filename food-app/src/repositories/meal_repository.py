@@ -69,7 +69,7 @@ class MealRepository:
         cursor.execute("select * from meals")
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
-    
+
     def get_meal_by_id(self, id):
         """ Hakee tietokannasta aterian, joka vastaa annettua id:tä
 
@@ -95,7 +95,8 @@ class MealRepository:
         """
 
         cursor = self.connection.cursor()
-        cursor.execute("insert into today_meals (date, user_id, meal_id) values (?, ?, ?)", (date, user_id, meal_id))
+        cursor.execute(
+            "insert into today_meals (date, user_id, meal_id) values (?, ?, ?)", (date, user_id, meal_id))
         self.connection.commit()
 
     def get_todays_meals(self, user_id, date):
@@ -117,7 +118,7 @@ class MealRepository:
         """, (user_id, date))
         rows = cursor.fetchall()
         return [get_meal_by_row(row) for row in rows]
-    
+
     def delete_meal_from_diary(self, meal_id, user_id, date):
         """ Aterian poistaminen päiväkirjasta tietokannasta,
             siten että vain yksi ateria poistetaan
@@ -139,5 +140,6 @@ class MealRepository:
                )
             """, (meal_id, user_id, date))
         self.connection.commit()
+
 
 meal_repository = MealRepository(get_database_connection())

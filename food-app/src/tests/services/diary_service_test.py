@@ -4,6 +4,7 @@ from entities.meal import Meal
 from entities.item import Item
 from services.diary_service import DiaryService
 
+
 class FakeUserRepository:
     def __init__(self):
         self.users = []
@@ -18,6 +19,7 @@ class FakeUserRepository:
                 return user
         return None
 
+
 class FakeItemRepository:
     def __init__(self):
         self.items = []
@@ -28,7 +30,8 @@ class FakeItemRepository:
 
     def get_all_items(self):
         return self.items
-    
+
+
 class FakeMealRepository:
     def __init__(self):
         self.meals = []
@@ -39,6 +42,7 @@ class FakeMealRepository:
 
     def get_all_meals(self):
         return self.meals
+
 
 class TestDiaryService(unittest.TestCase):
     def setUp(self):
@@ -52,6 +56,6 @@ class TestDiaryService(unittest.TestCase):
         self.meal_aamiainen = Meal("aamiainen", 300, 50, 10, 5)
 
     def test_create_user(self):
-        user =self.diary_service.create_user("ville", "salasana", "salasana")
+        user = self.diary_service.create_user("ville", "salasana", "salasana")
         self.assertEqual(user.username, "ville")
         self.assertEqual(user.password, "salasana")

@@ -77,7 +77,7 @@ class AccountEditView:
             column=0,
             columnspan=2,
             pady=(50, 50)
-            )
+        )
 
         self._container = ttk.Frame(
             master=self._frame,

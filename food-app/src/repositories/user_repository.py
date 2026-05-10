@@ -92,4 +92,5 @@ class UserRepository:
         )
         self.connection.commit()
 
+
 user_repository = UserRepository(get_database_connection())
