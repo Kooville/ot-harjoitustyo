@@ -92,6 +92,9 @@ class DiaryService:
         """
         if not self._user or not new_username or not new_goal_calories:
             raise ValueError("Kaikki kentät on täytettävä")
+        existing_user = self._user_repository.get_user_by_username(new_username)
+        if existing_user and existing_user.id != self._user.id:
+            raise ValueError("Käyttäjätunnus on varattu")
         if not new_goal_calories.isdigit() or int(new_goal_calories) <= 0:
             raise ValueError(
                 "Tavoitekalorimäärän on oltava positiivinen kokonaisluku")

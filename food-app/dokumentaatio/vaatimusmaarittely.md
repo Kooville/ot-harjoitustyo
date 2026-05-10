@@ -1,19 +1,19 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovellus toimii ruokapäiväkirjana auttaen käyttäjää esimerkiksi diettaamisen kanssa. Sovellukseen voi lisätä päiväkohtaisesti aterioita ja se kokoaa niistä koosteen sekä vertaa sitä käyttäjän asettamaan tavoitteeseen. Sovellusta voi käyttää useammalla eri käyttäjällä ja jokaisella on oma yksityinen ruokapäiväkirjansa.
+Sovellus toimii ruokapäiväkirjana auttaen käyttäjää esimerkiksi diettaamisen kanssa. Sovellukseen voi lisätä päiväkohtaisesti aterioita ja se kokoaa niistä koosteen sekä vertaa sitä käyttäjän asettamaan tavoitteeseen. Sovellus helpottaa aterioiden seuraamista ja kirjanpitoa. Sovellusta voi käyttää useammalla eri käyttäjällä ja jokaisella on oma yksityinen ruokapäiväkirjansa.
 
 
 ## Käyttäjät
-Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta myöhemmin saattaa nousta tarve useammalle roolille kuten pääkäyttäjä, jolla on enemmän oikeuksia.
+Sovelluksella on vain normaali käyttäjärooli.
 
 
-## Suunnitellut toiminnallisuudet
+## Toiminnallisuudet
 
 ### Ennen kirjautumista
 - [x] Sovelluksen käyttäjä pystyy luoda uuden käyttäjän sovellukseen
 
-  - [ ] Tarkastus että salasana on riittävä ja käyttäjätunnus ei käytössä
+  - [x] Tarkastus että käyttäjätunnus ei käytössä
 
 - [x] Käyttäjä voi kirjautua sovellukseen olemassa olevalla tunnuksella
 
@@ -29,17 +29,13 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
 
     - [x] Mahdollisuus valita aterioita jo luoduista aterioista
 
-    - [ ] Sovellus näyttää koosteen päivästä esim. alareunassa jossa näkyy päivän aterioiden kokonaiskalorit jaoteltuna makroravinteisiin ja käyttäjän asettama tavoite
-
-    - [ ] Painike jolla siirrytään seuraavaan päivään, jolloin päivän tiedot tallentuvat pidemmän ajan koosteeseen
+    - [x] Sovellus näyttää koosteen päivästä esim. alareunassa jossa näkyy päivän aterioiden kokonaiskalorit jaoteltuna makroravinteisiin ja käyttäjän asettama tavoite
 
   - [x] Käyttäjän tietoihin
 
     - [x] Asetettu tavoite
 
     - [x] Käyttäjä voi asettaa tavoitteen itsellensä sekä mahdollisesti muita tietoja
-
-  - [ ] Koosteeseen aiempien päivien tiedoista
 
   - [x] Tallennettujen aterioiden listaan
 
@@ -51,7 +47,8 @@ Ainakin alkuvaiheessa sovelluksella on vain normaali käyttäjärooli, mutta my�
     
     - [x] Aluksi itse kirjaamalla ravintoarvot
 
-    - [ ] Myöhemmin jos mahdollista niin tuotteen nimellä haetaan julkisesta tietokannasta tiedot
-
 - [x] Käyttäjä voi kirjautua ulos sovelluksesta
 
+## Jatkokehitysideoita
+ - Mahdollisuus tarkastella menneitä päiviä tai koostetta niistä
+ - Ruoka-aineiden ravintoarvojen hakeminen julkisesta tietokannasta tuotteen nimellä
